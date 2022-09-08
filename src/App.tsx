@@ -1,9 +1,12 @@
 import "./App.css";
+import { Input } from "./components/Input/Input";
 
 function App() {
   return (
     <div className="App">
-      <div></div>
+      <div>
+        <Input />
+      </div>
     </div>
   );
 }
