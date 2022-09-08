@@ -8,6 +8,11 @@
   outline: 0 none;
 }
 
+#root,
+body {
+  height: 100vh;
+}
+
 ul {
   list-style: none inside;
 }
@@ -20,11 +25,11 @@ a {
 /* 16px @ 768px increasing to 24px @ 1920px */
 @media (min-width: 768px) {
   :root {
-    font-size: calc(1rem + ((1vw - 7.68px) * 0.6944));
+    font-size: calc(1rem + ((1vw - 9.68px) * 0.6944));
   }
 }
 @media (min-width: 1920px) {
   :root {
-    font-size: 24px;
+    font-size: 20px;
   }
 }

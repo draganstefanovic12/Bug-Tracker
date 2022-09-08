@@ -1,13 +1,39 @@
 import "./App.css";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { Login } from "./pages/Login";
+import { login } from "./features/user/userSlice";
+import { MainPage } from "./pages/MainPage";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 
-function App() {
+const App = () => {
+  const user = useAppSelector((user) => user.user);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    /* Checking for existing user on page load */
+    const user = localStorage.getItem("BTUser");
+    if (user) {
+      dispatch(login(JSON.parse(user)));
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <div className="pt-5 pl-5 flex-1 flex-grow">
-        <h1>hey</h1>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={!user ? <Login /> : <MainPage />}></Route>
+        <Route
+          path="/"
+          element={user ? <MainPage /> : <Navigate to="/login" />}
+        ></Route>
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
