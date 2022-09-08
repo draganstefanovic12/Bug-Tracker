@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;700&family=Lato:wght@400;700&family=Nunito:wght@400;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -11,6 +13,23 @@
 #root,
 body {
   height: 100vh;
+  --font-main: "Hind Madurai", sans-serif;
+  --font-secondary: "Lato", sans-serif;
+  --font-p: "Nunito", sans-serif;
+  word-spacing: 0.1px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-main);
+}
+
+p,
+li,
+ul,
+a {
+  font-family: var(--font-p);
 }
 
 ul {

@@ -5,8 +5,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 type UserState = UserFullfilled | null;
 
 export type UserFullfilled = {
-  username: string;
-  token: string;
+  username?: string;
+  token?: string;
+  error?: string | undefined;
+  state?: string;
 };
 
 type ThunkUser = {
@@ -29,8 +31,9 @@ export const loginAsync = createAsyncThunk(
         },
       });
       return response.data;
-    } catch (err) {
-      throw err;
+    } catch (err: any) {
+      const response = err.response.data.message;
+      throw response;
     }
   }
 );
@@ -50,18 +53,26 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginAsync.pending, (state) => {});
-    builder.addCase(
-      loginAsync.fulfilled,
-      (user, action: PayloadAction<UserFullfilled>) => {
-        user = action.payload;
-        localStorage.setItem("BTUser", JSON.stringify(action.payload));
-        return user;
-      }
-    );
-    builder.addCase(loginAsync.rejected, (user, action) => {
-      user = null;
-    });
+    builder
+      .addCase(loginAsync.pending, (user) => {
+        return { ...user, state: "pending", error: undefined };
+      })
+      .addCase(
+        loginAsync.fulfilled,
+        (user, action: PayloadAction<UserFullfilled>) => {
+          localStorage.setItem("BTUser", JSON.stringify(action.payload));
+          return {
+            ...user,
+            username: action.payload.username,
+            token: action.payload.token,
+            state: "fulfilled",
+            error: undefined,
+          };
+        }
+      )
+      .addCase(loginAsync.rejected, (user, action) => {
+        return { ...user, error: action.error.message, state: "failed" };
+      });
   },
 });
 

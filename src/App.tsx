@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { Nav } from "./components/Nav/Nav";
 import { Login } from "./pages/Login";
 import { login } from "./features/user/userSlice";
 import { MainPage } from "./pages/MainPage";
@@ -25,11 +26,15 @@ const App = () => {
 
   return (
     <Router>
+      <Nav />
       <Routes>
-        <Route path="/login" element={!user ? <Login /> : <MainPage />}></Route>
+        <Route
+          path="/login"
+          element={!user?.username ? <Login /> : <MainPage />}
+        ></Route>
         <Route
           path="/"
-          element={user ? <MainPage /> : <Navigate to="/login" />}
+          element={user?.username ? <MainPage /> : <Navigate to="/login" />}
         ></Route>
       </Routes>
     </Router>

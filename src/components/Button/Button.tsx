@@ -1,7 +1,7 @@
 type ButtonProps = {
   children: JSX.Element | string;
   onClick?: () => void;
-  type: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
   className?: string;
 };
