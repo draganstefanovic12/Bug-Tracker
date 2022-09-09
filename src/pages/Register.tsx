@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { actionAsync } from "../features/user/userSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 
 export const Register = () => {
   const user = useAppSelector((user) => user.user);

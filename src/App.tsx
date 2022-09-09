@@ -18,7 +18,7 @@ const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    /* Checking for existing user on page load */
+    //Checking for existing user on page load
     const user = localStorage.getItem("BTUser");
     if (user) {
       dispatch(login(JSON.parse(user)));

@@ -20,7 +20,6 @@ type ThunkUser = {
 
 const initialState = null as UserState;
 //Can login or register a user since both calls are really similar
-//Using api
 export const actionAsync = createAsyncThunk(
   "user/action",
   async (user: ThunkUser) => {

@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { actionAsync } from "../features/user/userSlice";
 import { Formik, Form, Field } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
-import { Link } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
