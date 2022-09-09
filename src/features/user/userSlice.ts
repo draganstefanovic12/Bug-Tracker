@@ -1,5 +1,5 @@
 import axios from "axios";
-import { RootState } from "../../store/store";
+import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserState = UserFullfilled | null;
@@ -9,6 +9,7 @@ export type UserFullfilled = {
   token?: string;
   error?: string | undefined;
   state?: string;
+  role?: string;
 };
 
 type ThunkUser = {
@@ -62,7 +63,6 @@ export const userSlice = createSlice({
       .addCase(
         actionAsync.fulfilled,
         (user, action: PayloadAction<UserFullfilled>) => {
-          console.log(action);
           localStorage.setItem("BTUser", JSON.stringify(action.payload));
           return {
             ...user,
@@ -70,6 +70,7 @@ export const userSlice = createSlice({
             token: action.payload.token,
             state: "fulfilled",
             error: undefined,
+            role: action.payload.role,
           };
         }
       )

@@ -47,7 +47,7 @@ export const Register = () => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className="flex bg-[#fff] flex-col justify-center items-center text-center p-3 gap-5 h-4/6 w-80 rounded shadow appearance-none border">
+          <Form className="flex bg-[#fff] flex-col justify-center items-center text-center p-3 gap-3 h-3/5 w-80 rounded shadow appearance-none border">
             <h1 className="text-lg">Register</h1>
             <Field
               type="username"

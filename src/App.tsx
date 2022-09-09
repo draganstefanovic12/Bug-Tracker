@@ -39,7 +39,7 @@ const App = () => {
         ></Route>
         <Route
           path="/register"
-          element={!user?.username ? <Register /> : <Navigate to="/register" />}
+          element={!user?.username ? <Register /> : <Navigate to="/" />}
         ></Route>
       </Routes>
     </Router>
