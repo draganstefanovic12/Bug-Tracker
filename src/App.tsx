@@ -11,6 +11,7 @@ import { login } from "./features/user/userSlice";
 import { MainPage } from "./pages/MainPage";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 
 const App = () => {
@@ -27,16 +28,25 @@ const App = () => {
 
   return (
     <Router>
-      <Nav />
+      {user && (
+        <>
+          <Nav />
+          <Dashboard />
+        </>
+      )}
       <Routes>
         <Route
           path="/login"
-          element={!user?.username ? <Login /> : <MainPage />}
+          element={!user?.username ? <Login /> : <Navigate to="/" />}
         ></Route>
         <Route
           path="/"
           element={user?.username ? <MainPage /> : <Navigate to="/login" />}
-        ></Route>
+        >
+          <Route path="/projects"></Route>
+          <Route path="/tickets"></Route>
+          <Route path="/roles"></Route>
+        </Route>
         <Route
           path="/register"
           element={!user?.username ? <Register /> : <Navigate to="/" />}

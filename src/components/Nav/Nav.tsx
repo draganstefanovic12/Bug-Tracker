@@ -12,13 +12,11 @@ export const Nav = () => {
   };
 
   return (
-    <div className="flex justify-between px-6">
-      {user && (
-        <h1>
-          Logged in as: {user.username} ({user.role})
-        </h1>
-      )}
-      {user && <Button onClick={handleLogout}>Logout</Button>}
-    </div>
+    <nav className="flex justify-between px-1 h-9 bg-[#ecf0f1] drop-shadow">
+      <h1 className="flex items-center">
+        Logged in as: {user.username} ({user.role})
+      </h1>
+      <Button onClick={handleLogout}>Logout</Button>
+    </nav>
   );
 };
