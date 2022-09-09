@@ -14,20 +14,23 @@ export type UserFullfilled = {
 type ThunkUser = {
   username: string;
   password: string;
+  email?: string;
+  api: "login" | "register";
 };
 
 const initialState = null as UserState;
-
-const loginLink = "api/users/login";
-export const loginAsync = createAsyncThunk(
-  "user/login",
+//Can login or register a user since both calls are really similar
+//Using api
+export const actionAsync = createAsyncThunk(
+  "user/action",
   async (user: ThunkUser) => {
     try {
-      const response = await axios(loginLink, {
+      const response = await axios(`api/users/${user.api}`, {
         method: "POST",
         data: {
           username: user.username,
           password: user.password,
+          email: user.email,
         },
       });
       return response.data;
@@ -54,11 +57,11 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginAsync.pending, (user) => {
+      .addCase(actionAsync.pending, (user) => {
         return { ...user, state: "pending", error: undefined };
       })
       .addCase(
-        loginAsync.fulfilled,
+        actionAsync.fulfilled,
         (user, action: PayloadAction<UserFullfilled>) => {
           localStorage.setItem("BTUser", JSON.stringify(action.payload));
           return {
@@ -70,7 +73,7 @@ export const userSlice = createSlice({
           };
         }
       )
-      .addCase(loginAsync.rejected, (user, action) => {
+      .addCase(actionAsync.rejected, (user, action) => {
         return { ...user, error: action.error.message, state: "failed" };
       });
   },

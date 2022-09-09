@@ -1,11 +1,11 @@
 import { Button } from "../components/Button/Button";
 import { actionAsync } from "../features/user/userSlice";
-import { Formik, Form, Field } from "formik";
+import { Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
 
-export const Login = () => {
-  const dispatch = useAppDispatch();
+export const Register = () => {
   const user = useAppSelector((user) => user.user);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="flex flex-col gap-5 h-full justify-center items-center bg-[#1b1d1e]">
@@ -13,14 +13,15 @@ export const Login = () => {
         Welcome to Bug Tracker
       </h1>
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ username: "", password: "", email: "" }}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           dispatch(
             actionAsync({
               username: values.username,
               password: values.password,
-              api: "login",
+              email: values.email,
+              api: "register",
             })
           );
           user?.state !== "pending" && setSubmitting(false);
@@ -33,13 +34,13 @@ export const Login = () => {
               type="username"
               name="username"
               placeholder="Username"
-              className="input-field"
+              className="shadow appearance-none border rounded w-25 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <Field
               type="password"
               name="password"
               placeholder="Password"
-              className="input-field"
+              className="shadow appearance-none border rounded w-25 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             {user?.error && <div className="text-red-600">{user.error}</div>}
             <Button
