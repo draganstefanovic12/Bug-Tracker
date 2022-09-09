@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  @include shadow appearance-none border rounded w-25 py-2 px-3 text-gray-700
-    leading-tight focus: outline-none focus: shadow-outline;
-}
-
 @layer components {
   .input-field {
-    @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+    @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-3 focus:outline-none;
+  }
+
+  .btn-form {
+    @apply bg-stone-700 hover:bg-stone-800 text-white w-20 h-7 font-bold px-2 rounded focus:outline-none;
   }
 }

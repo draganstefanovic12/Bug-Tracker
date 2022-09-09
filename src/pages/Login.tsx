@@ -2,6 +2,7 @@ import { Button } from "../components/Button/Button";
 import { actionAsync } from "../features/user/userSlice";
 import { Formik, Form, Field } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -42,15 +43,16 @@ export const Login = () => {
               className="input-field"
             />
             {user?.error && <div className="text-red-600">{user.error}</div>}
-            <Button
-              disabled={isSubmitting}
-              type="submit"
-              className="bg-stone-700 hover:bg-stone-800 text-white w-20 h-7 font-bold px-2 rounded focus:outline-none focus:shadow-outline"
-            >
+            <Button disabled={isSubmitting} type="submit" className="btn-form">
               Submit
             </Button>
             <div className="flex flex-col text-xs w-auto items-center">
-              <p className="hover:cursor-pointer w-12 underline">Register</p>
+              <Link
+                to="/register"
+                className="hover:cursor-pointer w-12 underline"
+              >
+                Register
+              </Link>
               <p>
                 Sign in as a
                 <span className="underline hover:cursor-pointer pl-1">

@@ -9,6 +9,7 @@ import { Nav } from "./components/Nav/Nav";
 import { Login } from "./pages/Login";
 import { login } from "./features/user/userSlice";
 import { MainPage } from "./pages/MainPage";
+import { Register } from "./pages/Register";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 
@@ -35,6 +36,10 @@ const App = () => {
         <Route
           path="/"
           element={user?.username ? <MainPage /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/register"
+          element={!user?.username ? <Register /> : <Navigate to="/register" />}
         ></Route>
       </Routes>
     </Router>
