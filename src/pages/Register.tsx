@@ -26,7 +26,7 @@ export const Register = () => {
   });
 
   return (
-    <div className="flex flex-col gap-5 h-full justify-center items-center bg-[#1b1d1e]">
+    <div className="flex flex-col gap-5 h-full justify-center items-center bg-[#1b1d1e] col-span-2 row-span-2">
       <h1 className="text-white after:content-[url('./assets/images/bug.svg')] justify-center flex items-center">
         Welcome to Bug Tracker
       </h1>

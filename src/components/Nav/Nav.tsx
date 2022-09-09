@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 
 export const Nav = () => {
   const user = useAppSelector((user) => user.user);
-  console.log(user);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -13,7 +12,7 @@ export const Nav = () => {
 
   return (
     <nav className="flex justify-between px-1 h-9 bg-[#ecf0f1] drop-shadow">
-      <h1 className="flex items-center">
+      <h1 className="flex items-center select-none">
         Logged in as: {user.username} ({user.role})
       </h1>
       <Button onClick={handleLogout}>Logout</Button>

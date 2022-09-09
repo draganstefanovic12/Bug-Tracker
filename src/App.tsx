@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <Router>
-      {user && (
+      {user?.username && (
         <>
           <Nav />
           <Dashboard />

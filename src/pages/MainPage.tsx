@@ -1,6 +1,6 @@
 export const MainPage = () => {
   return (
-    <div>
+    <div className="p-1">
       <h1>hey</h1>
     </div>
   );
