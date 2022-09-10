@@ -13,10 +13,10 @@ const initialState = {
 } as unknown as ProjectState;
 
 export type Project = {
-  projects: Project[];
   name: string;
   issues?: [];
-  assigned?: [];
+  assigned?: string[];
+  link: string;
 };
 
 export const projectAsync = createAsyncThunk(

@@ -1,3 +1,4 @@
+import { CreateProject } from "../features/projects/CreateProject";
 import { Project } from "../features/projects/projectSlice";
 import { useFetch } from "../hooks/useFetch";
 
@@ -10,8 +11,9 @@ export const Projects = () => {
 
   return (
     <div className="">
-      {data?.projects.map((project) => (
-        <h1>{project.name}</h1>
+      <CreateProject />
+      {data?.projects.map((project, i: number) => (
+        <h1 key={i}>{project.name}</h1>
       ))}
     </div>
   );
