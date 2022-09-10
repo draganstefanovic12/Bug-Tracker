@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from "../axios/interceptors";
 import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ProjectState = {
   projects: Project[];
   error?: string | undefined;
-  state: string;
+  state?: string;
 };
 
 const initialState = {
@@ -27,7 +27,7 @@ export const projectAsync = createAsyncThunk(
         method: "POST",
         data: project,
       });
-      return response;
+      return response.data;
     } catch (err: any) {
       const response = err.response.data.message;
       throw response;
@@ -38,7 +38,14 @@ export const projectAsync = createAsyncThunk(
 export const projectSlice = createSlice({
   name: "projects",
   initialState,
-  reducers: {},
+  reducers: {
+    addProject: (state, action: PayloadAction<Project[]>) => {
+      return {
+        ...state,
+        projects: action.payload,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(projectAsync.pending, (project) => {
@@ -46,11 +53,11 @@ export const projectSlice = createSlice({
       })
       .addCase(
         projectAsync.fulfilled,
-        //Im not sure how to type this now, getting weird erros. check later
+        //Im not sure how to type this now, getting weird erros. check later <--
         (project, action: PayloadAction<any>) => {
           return {
             ...project,
-            projects: action.payload.projects,
+            projects: [...project.projects, action.payload],
             state: "fulfilled",
           };
         }
@@ -61,5 +68,6 @@ export const projectSlice = createSlice({
   },
 });
 
+export const { addProject } = projectSlice.actions;
 export const projects = (projects: RootState) => projects.projects;
 export default projectSlice.reducer;
