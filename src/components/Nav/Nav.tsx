@@ -3,7 +3,7 @@ import { Button } from "../Button/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 
 export const Nav = () => {
-  const user = useAppSelector((user) => user.user);
+  const user = useAppSelector((user) => user.user)!;
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {

@@ -9,7 +9,7 @@ export const Projects = () => {
   const data: Data = useFetch("api/projects/all")!;
 
   return (
-    <div>
+    <div className="">
       {data?.projects.map((project) => (
         <h1>{project.name}</h1>
       ))}

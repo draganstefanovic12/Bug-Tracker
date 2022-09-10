@@ -43,11 +43,10 @@ const App = () => {
         <Route
           path="/"
           element={user?.username ? <MainPage /> : <Navigate to="/login" />}
-        >
-          <Route path="/projects" element={<Projects />}></Route>
-          <Route path="/tickets"></Route>
-          <Route path="/roles"></Route>
-        </Route>
+        ></Route>
+        <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/tickets"></Route>
+        <Route path="/roles"></Route>
         <Route
           path="/register"
           element={!user?.username ? <Register /> : <Navigate to="/" />}
