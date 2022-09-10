@@ -3,19 +3,21 @@ import { useState } from "react";
 import menu from "../../assets/images/menu.svg";
 
 export const Dashboard = () => {
-  const [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState("");
 
   const handleMobileDashboard = () => {
-    setDisplay(!display);
+    setDisplay(
+      display === "animate-fadein" ? "animate-fadeout" : "animate-fadein"
+    );
+  };
+
+  const handleCloseOnClick = () => {
+    setDisplay("sm:animate-fadeout");
   };
 
   return (
     <div
-      className={
-        display
-          ? `flex h-full bg-[#33475c] text-white pt-1 w-44 animate-fadein`
-          : `w-8 animate-fadeout flex h-full bg-[#33475c] text-white pt-1`
-      }
+      className={`${display} flex md:animate-none h-full z-10 bg-[#33475c] text-white pt-1 sm:w-8 md:w-44`}
     >
       <ul className="gap-2 flex flex-col pt-2 w-full">
         <img
@@ -26,24 +28,28 @@ export const Dashboard = () => {
         />
         <Link
           to="/"
+          onClick={handleCloseOnClick}
           className="before:content-[url('././assets/images/dashboard.svg')] dashboard-link"
         >
           Dashboard
         </Link>
         <Link
           to="/projects"
+          onClick={handleCloseOnClick}
           className="before:content-[url('././assets/images/projects.svg')] dashboard-link"
         >
           Manage Projects
         </Link>
         <Link
           to="/tickets"
+          onClick={handleCloseOnClick}
           className="before:content-[url('././assets/images/tickets.svg')] dashboard-link"
         >
           Manage Tickets
         </Link>
         <Link
           to="/roles"
+          onClick={handleCloseOnClick}
           className="before:content-[url('././assets/images/users.svg')] dashboard-link"
         >
           Manage Roles
