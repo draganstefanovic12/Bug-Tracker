@@ -1,25 +1,16 @@
-import axios from "axios";
-import { useAppSelector } from "./useRedux";
+import axios from "../features/axios/interceptors";
 import { useEffect, useState } from "react";
 
 export const useFetch = (url: string) => {
-  const user = useAppSelector((user) => user.user);
   const [data, setData] = useState();
 
   useEffect(() => {
-    //Authorization
-    const options = {
-      headers: {
-        Authorization: `${user.username} ${user.token}`,
-      },
-    };
-
     const handleFetch = async () => {
-      const data = await axios.get(url, options);
+      const data = await axios.get(url);
       setData(data.data);
     };
     handleFetch();
-  }, [url, user.token, user.username]);
+  }, [url]);
 
   return data;
 };

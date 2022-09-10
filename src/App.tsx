@@ -8,6 +8,7 @@ import {
 import { Nav } from "./components/Nav/Nav";
 import { Login } from "./pages/Login";
 import { login } from "./features/user/userSlice";
+import { Projects } from "./pages/Projects";
 import { MainPage } from "./pages/MainPage";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
@@ -43,7 +44,7 @@ const App = () => {
           path="/"
           element={user?.username ? <MainPage /> : <Navigate to="/login" />}
         >
-          <Route path="/projects"></Route>
+          <Route path="/projects" element={<Projects />}></Route>
           <Route path="/tickets"></Route>
           <Route path="/roles"></Route>
         </Route>

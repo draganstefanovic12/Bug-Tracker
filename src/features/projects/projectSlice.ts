@@ -46,6 +46,7 @@ export const projectSlice = createSlice({
       })
       .addCase(
         projectAsync.fulfilled,
+        //Im not sure how to type this now, getting weird erros. check later
         (project, action: PayloadAction<any>) => {
           return {
             ...project,

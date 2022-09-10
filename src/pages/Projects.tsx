@@ -1,5 +1,5 @@
-import { Project } from "./projectSlice";
-import { useFetch } from "../../hooks/useFetch";
+import { Project } from "../features/projects/projectSlice";
+import { useFetch } from "../hooks/useFetch";
 
 type Data = {
   projects: Project[];
