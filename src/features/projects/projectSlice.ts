@@ -1,17 +1,19 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store/store";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ProjectState = {
-  projects: [];
+  projects: Project[];
   error?: string | undefined;
   state: string;
 };
 
 const initialState = {
   projects: [],
-} as ProjectState;
+} as unknown as ProjectState;
 
-type Project = {
+export type Project = {
+  projects: Project[];
   name: string;
   issues?: [];
   assigned?: [];
@@ -57,3 +59,6 @@ export const projectSlice = createSlice({
       });
   },
 });
+
+export const projects = (projects: RootState) => projects.projects;
+export default projectSlice.reducer;
