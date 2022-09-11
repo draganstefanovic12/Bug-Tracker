@@ -4,15 +4,20 @@ import { projectAsync } from "./projectSlice";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { Field, Form, Formik } from "formik";
 
-export const CreateProject = () => {
+type CreateProps = {
+  setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const CreateProject = ({ setIsCreating }: CreateProps) => {
   const dispatch = useAppDispatch();
 
   return (
     <div>
       <Formik
-        initialValues={{ name: "", assigned: [], link: "" }}
+        initialValues={{ name: "", assigned: [], link: "", description: "" }}
         onSubmit={(values, { setSubmitting }) => {
           dispatch(projectAsync(values));
+          setIsCreating(false);
           setSubmitting(true);
         }}
       >
@@ -23,6 +28,8 @@ export const CreateProject = () => {
             <Field placeholder="Name" name="name" className="input-field" />
             <label>Project link: </label>
             <Field name="link" className="input-field" />
+            <label>Description: </label>
+            <Field name="description" className="input-field" />
             <label>Assign Users:</label>
             <Field
               name="assigned"
