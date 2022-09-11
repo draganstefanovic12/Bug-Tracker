@@ -13,6 +13,7 @@ import { MainPage } from "./pages/MainPage";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 
 const App = () => {
@@ -38,19 +39,18 @@ const App = () => {
       <Routes>
         <Route
           path="/login"
-          element={!user?.username ? <Login /> : <Navigate to="/" />}
+          element={!user ? <Login /> : <Navigate to="/" />}
         ></Route>
-        <Route
-          path="/"
-          element={user?.username ? <MainPage /> : <Navigate to="/login" />}
-        ></Route>
-        <Route path="/projects" element={<Projects />}></Route>
-        <Route path="/tickets"></Route>
-        <Route path="/roles"></Route>
         <Route
           path="/register"
-          element={!user?.username ? <Register /> : <Navigate to="/" />}
+          element={!user ? <Register /> : <Navigate to="/" />}
         ></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<MainPage />}></Route>
+          <Route path="/projects" element={<Projects />}></Route>
+          <Route path="/tickets"></Route>
+          <Route path="/roles"></Route>
+        </Route>
       </Routes>
     </Router>
   );

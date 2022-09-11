@@ -26,7 +26,7 @@ export const Projects = () => {
 
   return (
     <section className="flex pl-1 bg-[#BDBDBD]">
-      <div className="w-3/4">
+      <div className="sm:w-full md:w-3/4">
         <Button
           className="bg-stone-700 hover:bg-stone-800 h-7 text-sm p-1 text-white font-bold shadow rounded"
           onClick={handleCreate}

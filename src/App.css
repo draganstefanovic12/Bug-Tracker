@@ -59,7 +59,7 @@ a {
 }
 @media only screen and (max-width: 768px) {
   #root {
-    grid-template-columns: 7rem 1fr;
+    grid-template-columns: 2rem 1fr;
   }
 }
 @media (min-width: 1920px) {
