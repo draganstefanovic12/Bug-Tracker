@@ -1,6 +1,7 @@
 import { Button } from "../../components/Button/Button";
 import { Project } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
+import { ProjectTickets } from "../../components/ProjectTickets/ProjectTickets";
 import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";
@@ -38,14 +39,7 @@ export const ProjectDetails = () => {
       </div>
       <div className="flex p-1 gap-9 bg-[#fff] shadow">
         <AssignedPersonnel assignedUsers={project?.assigned} />
-        <ul className="bg-[#fff] border-l-2  pl-1">
-          <h1 className="font-bold">Current tickets: </h1>
-          {project?.issues?.map((ticket) => (
-            <li>
-              <p>{ticket}</p>
-            </li>
-          ))}
-        </ul>
+        <ProjectTickets tickets={project?.tickets} />
       </div>
       <Button
         className="btn-form bg-red-600 hover:bg-red-700 shadow absolute bottom-5 right-5"

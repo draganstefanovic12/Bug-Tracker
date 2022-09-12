@@ -37,10 +37,20 @@ export const Projects = () => {
           {projects?.map((project, i: number) => (
             <li key={i} className="flex w-4/4 p-1 justify-between shadow-sm">
               <p className="w-20">{project.name}</p>
-              <p className="w-20">{project.link}</p>
+              <p className="w-20">{project.description}</p>
               <div className="flex flex-col">
-                <Link to={`/projects/${project.name}/users`}>Manage users</Link>
-                <Link to={`/projects/${project.name}/`}>Details</Link>
+                <Link
+                  className="hover:underline"
+                  to={`/projects/${project.name}/users`}
+                >
+                  Manage users
+                </Link>
+                <Link
+                  className="hover:underline"
+                  to={`/projects/${project.name}/`}
+                >
+                  Details
+                </Link>
               </div>
             </li>
           ))}

@@ -2,7 +2,7 @@
 
 export type Project = {
   name: string;
-  issues?: [];
+  tickets?: [];
   assigned?: User[];
   link: string;
   _id?: string;
@@ -13,4 +13,23 @@ export type User = {
   username: string;
   email: string;
   role: string;
+};
+
+export type Ticket = {
+  title: string;
+  submitter: string;
+  status: string;
+  developer: string;
+  created: string;
+  project: string;
+  description: string;
+  type: string;
+  priority: string;
+  comments: Comment[];
+};
+
+export type Comment = {
+  commenter: User;
+  message: string;
+  created: string;
 };

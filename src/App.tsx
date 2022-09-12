@@ -16,6 +16,7 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
+import { Ticket } from "./pages/Ticket";
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
@@ -42,7 +43,7 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:project" element={<ProjectDetails />} />
-          <Route path="/tickets" />
+          <Route path="/tickets/:name/:title" element={<Ticket />} />
           <Route path="/roles" />
         </Route>
         <Route
