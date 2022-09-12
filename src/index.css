@@ -13,6 +13,6 @@
   }
 
   .btn-form {
-    @apply bg-stone-700 hover:bg-stone-800 text-white w-20 h-7 font-bold px-2 rounded focus:outline-none;
+    @apply bg-[#1D3557] text-white w-20 h-7 font-bold px-2 rounded focus:outline-none;
   }
 }

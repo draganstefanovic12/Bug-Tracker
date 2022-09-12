@@ -11,11 +11,10 @@ export const Nav = () => {
   };
 
   return (
-    <nav className="flex justify-between px-1 h-9 bg-[#ecf0f1] drop-shadow">
+    <nav className="flex justify-between px-1 h-9 bg-[#fff] drop-shadow">
       <h1 className="flex items-center select-none">
         Logged in as: {user.username} ({user.role})
       </h1>
-      <Button onClick={handleLogout}>Logout</Button>
     </nav>
   );
 };

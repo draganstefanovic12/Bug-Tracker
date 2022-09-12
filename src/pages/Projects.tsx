@@ -27,16 +27,13 @@ export const Projects = () => {
   };
 
   return (
-    <section className="flex px-1 bg-[#BDBDBD]">
+    <section className="flex px-1">
       <div className="flex flex-col w-full md:block md:w-3/4 p-1">
-        <Button
-          className="bg-stone-700 hover:bg-stone-800 h-7 w-2/4 md:w-40 text-sm p-1 text-white font-bold shadow rounded"
-          onClick={handleCreate}
-        >
+        <Button className="btn-form w-40" onClick={handleCreate}>
           Create new project
         </Button>
-        <h1>Projects</h1>
-        <ul className="flex flex-col gap-3 w-full text-sm bg-[#f2f4f7] rounded shadow">
+        <h1 className="font-bold">Projects</h1>
+        <ul className="flex flex-col gap-3 w-full text-sm rounded shadow">
           {projects?.map((project, i: number) => (
             <li key={i} className="flex w-4/4 p-1 justify-between shadow-sm">
               <p className="w-20">{project.name}</p>

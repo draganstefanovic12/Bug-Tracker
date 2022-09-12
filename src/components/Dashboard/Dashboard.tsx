@@ -17,7 +17,7 @@ export const Dashboard = () => {
 
   return (
     <div
-      className={`${display} flex md:animate-none h-full z-10 bg-[#212121] text-white pt-1 sm:w-8 md:w-44`}
+      className={`${display} flex md:animate-none h-full z-10 bg-[#1D3557] shadow-lg text-white pt-1 sm:w-8 md:w-44`}
     >
       <ul className="gap-2 flex flex-col pt-2 overflow-hidden sm:w-8 md:w-44">
         <img

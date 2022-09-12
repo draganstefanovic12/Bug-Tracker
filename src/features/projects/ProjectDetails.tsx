@@ -1,10 +1,9 @@
-import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { Project } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
+import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";
-import { AssignedPersonnel } from "./AssignedPersonnel";
 
 export const ProjectDetails = () => {
   const params = useParams();
@@ -21,9 +20,9 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <section className="bg-[#BDBDBD] p-5">
-      <div className="bg-[#fff] flex p-1 flex-col gap-40 shadow">
-        <h1>Project name: {project?.name}</h1>
+    <section className="p-5">
+      <h1 className="font-bold">{project?.name}</h1>
+      <div className="bg-[#fff] flex p-1 gap-40">
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ul className="">
           <p>Current tickets: </p>
@@ -34,7 +33,12 @@ export const ProjectDetails = () => {
           ))}
         </ul>
       </div>
-      <Button onClick={handleDelete}>Delete project.</Button>
+      <Button
+        className="btn-form bg-red-600 hover:bg-red-700"
+        onClick={handleDelete}
+      >
+        Delete project
+      </Button>
     </section>
   );
 };

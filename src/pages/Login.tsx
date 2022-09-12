@@ -9,8 +9,8 @@ export const Login = () => {
   const user = useAppSelector((user) => user.user);
 
   return (
-    <div className="flex flex-col gap-5 h-full justify-center items-center bg-[#1b1d1e] col-span-2 row-span-2">
-      <h1 className="text-white after:content-[url('./assets/images/bug.svg')] justify-center flex items-center">
+    <div className="flex flex-col gap-5 h-full justify-center items-center bg-[#fff] col-span-2 row-span-2">
+      <h1 className="after:content-[url('./assets/images/bug.svg')] justify-center flex items-center">
         Welcome to Bug Tracker
       </h1>
       <Formik
