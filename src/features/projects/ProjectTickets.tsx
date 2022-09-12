@@ -1,6 +1,6 @@
-import { Input } from "../Input/Input";
-import { Ticket } from "../../types/types";
 import { Link } from "react-router-dom";
+import { Input } from "../../components/Input/Input";
+import { Ticket } from "../../types/types";
 import { useState } from "react";
 
 type TicketsProps = {
@@ -26,7 +26,7 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
   };
 
   return (
-    <ul className="bg-[#fff] border-l-2 relative  pl-1">
+    <ul className="bg-[#fff] border-l-2 relative pl-1">
       <h1 className="font-bold">Current tickets: </h1>
       <Input
         className="bg-gray-100 absolute px-1 top-0 right-0.5 text-sm"
@@ -46,8 +46,11 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
           <p className="w-32">{ticket.submitter}</p>
           <p className="w-32">{ticket.status}</p>
           <p className="w-32">{ticket.developer}</p>
-          <p className="w-32">{ticket.created}</p>
-          <Link to={`/tickets/${ticket.project}/${ticket.title}`}>
+          <p className="w-32">{ticket.created.slice(0, 10)}</p>
+          <Link
+            className="hover:underline"
+            to={`/tickets/${ticket.project}/${ticket.title}`}
+          >
             See more
           </Link>
         </li>

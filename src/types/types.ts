@@ -29,7 +29,7 @@ export type Ticket = {
 };
 
 export type Comment = {
-  commenter: User;
+  commenter: string | undefined;
   message: string;
-  created: string;
+  created?: string;
 };

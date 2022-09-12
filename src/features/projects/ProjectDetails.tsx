@@ -1,7 +1,7 @@
 import { Button } from "../../components/Button/Button";
 import { Project } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
-import { ProjectTickets } from "../../components/ProjectTickets/ProjectTickets";
+import { ProjectTickets } from "./ProjectTickets";
 import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";
@@ -31,13 +31,13 @@ export const ProjectDetails = () => {
           Project description: <b>{project?.description}</b>
         </h1>
         <h1>
-          Project link:{" "}
-          <a className="underline" href={project?.link}>
+          Project link:
+          <a className="underline pl-1" href={project?.link}>
             {project?.link}
           </a>
         </h1>
       </div>
-      <div className="flex p-1 gap-9 bg-[#fff] shadow">
+      <div className="flex p-1 gap-9 bg-[#fff]">
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>
