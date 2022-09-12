@@ -16,9 +16,6 @@ export const Tickets = () => {
   return (
     <div className="bg-[#fff] m-1 p-1">
       <h1>All tickets</h1>
-      {tickets?.map((ticket: Ticket, i) => (
-        <TicketInfo ticket={ticket} />
-      ))}
     </div>
   );
 };
