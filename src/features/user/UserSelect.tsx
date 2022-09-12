@@ -1,12 +1,5 @@
+import { User } from "../../types/types";
 import { useFetch } from "../../hooks/useFetch";
-
-type User = {
-  email: string;
-  projects: [];
-  role: string;
-  _id: string;
-  username: string;
-};
 
 export const UserSelect = () => {
   const data: User[] = useFetch("/api/users/all")!;
@@ -14,7 +7,7 @@ export const UserSelect = () => {
   const users =
     data &&
     data.map((user: User, i: number) => (
-      <option value={user.username} key={i}>
+      <option value={JSON.stringify(user)} key={i}>
         {user.username}
       </option>
     ));

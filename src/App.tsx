@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
+import { ProjectDetails } from "./features/projects/ProjectDetails";
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
@@ -37,20 +38,21 @@ const App = () => {
         </>
       )}
       <Routes>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:project" element={<ProjectDetails />} />
+          <Route path="/tickets" />
+          <Route path="/roles" />
+        </Route>
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
-        ></Route>
+        />
         <Route
           path="/register"
           element={!user ? <Register /> : <Navigate to="/" />}
-        ></Route>
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/projects" element={<Projects />}></Route>
-          <Route path="/tickets"></Route>
-          <Route path="/roles"></Route>
-        </Route>
+        />
       </Routes>
     </Router>
   );

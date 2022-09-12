@@ -2,21 +2,21 @@ import axios from "axios";
 import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type UserState = UserFullfilled | null;
-
-export type UserFullfilled = {
-  username?: string;
-  token?: string;
-  error?: string | undefined;
-  state?: string;
-  role?: string;
-};
+type UserState = UserFulfilled | null;
 
 type ThunkUser = {
   username: string;
   password: string;
   email?: string;
   api: "login" | "register";
+};
+
+export type UserFulfilled = {
+  username?: string;
+  token?: string;
+  error?: string | undefined;
+  state?: string;
+  role?: string;
 };
 
 const initialState = null as UserState;
@@ -45,7 +45,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (user, action: PayloadAction<UserFullfilled>) => {
+    login: (user, action: PayloadAction<UserFulfilled>) => {
       user = action.payload;
       return user;
     },
@@ -62,7 +62,7 @@ export const userSlice = createSlice({
       })
       .addCase(
         actionAsync.fulfilled,
-        (user, action: PayloadAction<UserFullfilled>) => {
+        (user, action: PayloadAction<UserFulfilled>) => {
           localStorage.setItem("BTUser", JSON.stringify(action.payload));
           return {
             ...user,

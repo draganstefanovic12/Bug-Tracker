@@ -1,4 +1,5 @@
 import axios from "../axios/interceptors";
+import { Project } from "../../types/types";
 import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -11,13 +12,6 @@ export type ProjectState = {
 const initialState = {
   projects: [],
 } as unknown as ProjectState;
-
-export type Project = {
-  name: string;
-  issues?: [];
-  assigned?: string[];
-  link: string;
-};
 
 export const projectAsync = createAsyncThunk(
   "projects/new",
