@@ -37,7 +37,7 @@ export const Projects = () => {
           {projects?.map((project, i: number) => (
             <li key={i} className="flex w-4/4 p-1 justify-between shadow-sm">
               <p className="w-20">{project.name}</p>
-              <p className="w-20">{project.description}</p>
+              <p className="w-20 whitespace-nowrap">{project.description}</p>
               <div className="flex flex-col">
                 <Link
                   className="hover:underline"

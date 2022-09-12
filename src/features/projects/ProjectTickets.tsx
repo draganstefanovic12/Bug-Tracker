@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Input } from "../../components/Input/Input";
 import { Ticket } from "../../types/types";
 import { useState } from "react";
+import { Listings } from "../../components/Listings/Listings";
 
 type TicketsProps = {
   tickets: Ticket[] | undefined;
@@ -25,6 +26,8 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
     setTicket(filter);
   };
 
+  const project = ["Title", "Submitter", "Status", "Developer", "Created"];
+
   return (
     <ul className="bg-[#fff] border-l-2 relative pl-1">
       <h1 className="font-bold">Current tickets: </h1>
@@ -33,13 +36,7 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
         placeholder="Search"
         onChange={handleSearch}
       />
-      <div className="flex text-sm border-b-2 border-black">
-        <p className="w-32 font-bold">Title</p>
-        <p className="w-32 font-bold">Submitter</p>
-        <p className="w-32 font-bold">Status</p>
-        <p className="w-32 font-bold">Developer</p>
-        <p className="w-32 font-bold">Created</p>
-      </div>
+      <Listings children={project} />
       {ticket?.map((ticket: Ticket) => (
         <li className="flex text-sm mt-1 border-b-2">
           <p className="w-32">{ticket.title}</p>

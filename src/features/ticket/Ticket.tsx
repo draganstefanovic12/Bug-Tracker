@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { TicketInfo } from "../features/ticket/TicketInfo";
-import { TicketComments } from "../features/ticket/TicketComments";
-import { useAppSelector } from "../hooks/useRedux";
+import { TicketInfo } from "./TicketInfo";
+import { TicketComments } from "./TicketComments";
+import { useAppSelector } from "../../hooks/useRedux";
 import { useEffect, useState } from "react";
-import { Project, Ticket as Tickets } from "../types/types";
+import { Project, Ticket as Tickets } from "../../types/types";
 
 export const Ticket = () => {
   const [ticket, setTicket] = useState<Tickets | undefined>();

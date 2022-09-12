@@ -6,17 +6,18 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav";
-import { Login } from "./pages/Login";
 import { login } from "./features/user/userSlice";
+import { Login } from "./pages/Login";
+import { Tickets } from "./pages/Tickets";
 import { Projects } from "./pages/Projects";
 import { MainPage } from "./pages/MainPage";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
-import { ProjectDetails } from "./features/projects/ProjectDetails";
-import { Ticket } from "./pages/Ticket";
+import { Ticket } from "./features/ticket/Ticket";
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:project" element={<ProjectDetails />} />
+          <Route path="/tickets" element={<Tickets />} />
           <Route path="/tickets/:name/:title" element={<Ticket />} />
           <Route path="/roles" />
         </Route>
