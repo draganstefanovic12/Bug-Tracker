@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import menu from "../../assets/images/menu.svg";
 
+const links = [
+  { to: "/", img: "before:content-dashboard", name: "Dashboard" },
+  { to: "/projects", img: "before:content-projects", name: "Manage Projects" },
+  { to: "/tickets", img: "before:content-tickets", name: "Manage Tickets" },
+  { to: "/roles", img: "before:content-users", name: "Manage Roles" },
+];
+
 export const Dashboard = () => {
+  //State for mobile dashboard animation
   const [display, setDisplay] = useState("");
 
   const handleMobileDashboard = () => {
@@ -26,34 +34,16 @@ export const Dashboard = () => {
           className="h-7 w-7 ml-0.5 hover:cursor-pointer sm:flex md:hidden"
           alt="menu"
         />
-        <Link
-          to="/"
-          onClick={handleCloseOnClick}
-          className="before:content-[url('././assets/images/dashboard.svg')] dashboard-link"
-        >
-          Dashboard
-        </Link>
-        <Link
-          to="/projects"
-          onClick={handleCloseOnClick}
-          className="before:content-[url('././assets/images/projects.svg')] dashboard-link"
-        >
-          Manage Projects
-        </Link>
-        <Link
-          to="/tickets"
-          onClick={handleCloseOnClick}
-          className="before:content-[url('././assets/images/tickets.svg')] dashboard-link"
-        >
-          Manage Tickets
-        </Link>
-        <Link
-          to="/roles"
-          onClick={handleCloseOnClick}
-          className="before:content-[url('././assets/images/users.svg')] dashboard-link"
-        >
-          Manage Roles
-        </Link>
+        {links.map((link, i) => (
+          <Link
+            key={i}
+            to={link.to}
+            className={`${link.img} dashboard-link`}
+            onClick={handleCloseOnClick}
+          >
+            {link.name}
+          </Link>
+        ))}
       </ul>
     </div>
   );

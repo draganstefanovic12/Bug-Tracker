@@ -17,6 +17,7 @@ body {
   --font-secondary: "Lato", sans-serif;
   --font-p: "Nunito", sans-serif;
   word-spacing: 0.1px;
+  background-color: #ededed;
 }
 /* basic grid layout */
 #root {

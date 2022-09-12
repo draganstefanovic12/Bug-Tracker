@@ -20,12 +20,26 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <section className="p-5">
-      <h1 className="font-bold">{project?.name}</h1>
-      <div className="bg-[#fff] flex p-1 gap-40">
+    <section className="m-5 relative p-1 h-4/5 bg-[#fff] flex flex-col justify-around">
+      <h1 className="text-lg absolute top-1">Project details</h1>
+      <div className="flex flex-col">
+        <h1>
+          Project name: <b>{project?.name}</b>
+        </h1>
+        <h1>
+          Project description: <b>{project?.description}</b>
+        </h1>
+        <h1>
+          Project link:{" "}
+          <a className="underline" href={project?.link}>
+            {project?.link}
+          </a>
+        </h1>
+      </div>
+      <div className="flex p-1 gap-9 bg-[#fff] shadow">
         <AssignedPersonnel assignedUsers={project?.assigned} />
-        <ul className="">
-          <p>Current tickets: </p>
+        <ul className="bg-[#fff] border-l-2  pl-1">
+          <h1 className="font-bold">Current tickets: </h1>
           {project?.issues?.map((ticket) => (
             <li>
               <p>{ticket}</p>
@@ -34,7 +48,7 @@ export const ProjectDetails = () => {
         </ul>
       </div>
       <Button
-        className="btn-form bg-red-600 hover:bg-red-700"
+        className="btn-form bg-red-600 hover:bg-red-700 shadow absolute bottom-5 right-5"
         onClick={handleDelete}
       >
         Delete project

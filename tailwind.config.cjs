@@ -17,6 +17,12 @@ module.exports = {
           "100%": { width: "2rem" },
         },
       },
+      content: {
+        dashboard: "url('./assets/images/dashboard.svg')",
+        projects: "url('./assets/images/projects.svg')",
+        tickets: "url('./assets/images/tickets.svg')",
+        users: "url('./assets/images/users.svg')",
+      },
     },
   },
   plugins: [],

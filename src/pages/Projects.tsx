@@ -33,7 +33,7 @@ export const Projects = () => {
           Create new project
         </Button>
         <h1 className="font-bold">Projects</h1>
-        <ul className="flex flex-col gap-3 w-full text-sm rounded shadow">
+        <ul className="flex flex-col gap-3 w-full bg-[#fff] text-sm shadow">
           {projects?.map((project, i: number) => (
             <li key={i} className="flex w-4/4 p-1 justify-between shadow-sm">
               <p className="w-20">{project.name}</p>

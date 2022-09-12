@@ -6,6 +6,7 @@ export type Project = {
   assigned?: User[];
   link: string;
   _id?: string;
+  description: string;
 };
 
 export type User = {
