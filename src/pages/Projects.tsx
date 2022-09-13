@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { useState } from "react";
+import { Categories } from "../components/Categories/Categories";
 import { CreateProject } from "../features/projects/CreateProject";
 import { useAppSelector } from "../hooks/useRedux";
 
@@ -12,27 +13,36 @@ export const Projects = () => {
     setIsCreating(true);
   };
 
+  const categories = ["Name", "Description", "Options"];
+
   return (
     <section className="flex px-1">
-      <div className="flex flex-col w-full md:block md:w-3/4 p-1">
-        <Button className="btn-form w-40" onClick={handleCreate}>
-          Create new project
-        </Button>
-        <h1 className="font-bold">Projects</h1>
-        <ul className="flex flex-col gap-3 w-full bg-[#fff] text-sm shadow">
+      <div className="flex flex-col w-full md:block">
+        <ul className="flex flex-col gap-3 w-full p-1 bg-[#fff] text-sm shadow relative">
+          <h1 className="font-bold text-lg">Projects</h1>
+          <Button
+            className="btn-form w-36 h-6 absolute right-1"
+            onClick={handleCreate}
+          >
+            Create new project
+          </Button>
+          <Categories
+            children={categories}
+            className="justify-between child:w-20 p-1"
+          />
           {projects?.map((project, i: number) => (
-            <li key={i} className="flex w-4/4 p-1 justify-between shadow-sm">
+            <li key={i} className="flex p-1 justify-between shadow-sm">
               <p className="w-20">{project.name}</p>
               <p className="w-20 whitespace-nowrap">{project.description}</p>
               <div className="flex flex-col">
                 <Link
-                  className="hover:underline"
+                  className="hover:underline w-20 whitespace-nowrap"
                   to={`/projects/${project.name}/users`}
                 >
                   Manage users
                 </Link>
                 <Link
-                  className="hover:underline"
+                  className="hover:underline w-20"
                   to={`/projects/${project.name}/`}
                 >
                   Details

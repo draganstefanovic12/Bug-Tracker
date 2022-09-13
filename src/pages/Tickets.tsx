@@ -39,10 +39,10 @@ export const Tickets = () => {
   }, [projects]);
 
   return (
-    <div className="bg-[#fff] m-1 p-1">
+    <div className="bg-[#fff] m-1 p-1 relative">
       <h1 className="text-lg font-bold">All tickets</h1>
       <Input
-        className="bg-gray-100 absolute px-1 top-0 right-0.5 text-sm"
+        className="bg-[#ededed] absolute px-1 top-1.5 right-1 shadow-inner right-0.5 text-sm"
         placeholder="Search"
         onChange={handleSearch}
       />

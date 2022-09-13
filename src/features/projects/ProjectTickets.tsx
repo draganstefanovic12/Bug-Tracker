@@ -26,17 +26,17 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
     setTicket(filter);
   };
 
-  const project = ["Title", "Submitter", "Status", "Developer", "Created"];
+  const categories = ["Title", "Submitter", "Status", "Developer", "Created"];
 
   return (
     <ul className="bg-[#fff] border-l-2 relative pl-1">
       <h1 className="font-bold">Current tickets: </h1>
       <Input
-        className="bg-gray-100 absolute px-1 top-0 right-0.5 text-sm"
+        className="bg-[#ededed] absolute px-1 top-0 shadow-inner right-0.5 text-sm"
         placeholder="Search"
         onChange={handleSearch}
       />
-      <Categories children={project} />
+      <Categories children={categories} />
       {ticket?.map((ticket: Ticket, i) => (
         <li key={i} className="child:w-32 flex text-sm mt-1 border-b-2">
           <p>{ticket.title}</p>

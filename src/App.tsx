@@ -21,6 +21,7 @@ import { addProject } from "./features/projects/projectSlice";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
+import { Roles } from "./pages/Roles";
 
 type Data = {
   projects: Project[];
@@ -56,7 +57,7 @@ const App = () => {
           <Route path="/projects/:project" element={<ProjectDetails />} />
           <Route path="/tickets" element={<Tickets />} />
           <Route path="/tickets/:name/:title" element={<Ticket />} />
-          <Route path="/roles" />
+          <Route path="/roles" element={<Roles />} />
         </Route>
         <Route
           path="/login"

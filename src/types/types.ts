@@ -26,6 +26,7 @@ export type Ticket = {
   type: string;
   priority: string;
   comments: Comment[];
+  updates: string[];
 };
 
 export type Comment = {

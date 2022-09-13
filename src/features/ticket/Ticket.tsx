@@ -7,7 +7,6 @@ import { Project, Ticket as Tickets } from "../../types/types";
 
 export const Ticket = () => {
   const [ticket, setTicket] = useState<Tickets | undefined>();
-  //Assuming i have project/then ticket in the title
   const params = useParams();
   const projects = useAppSelector((projects) => projects.projects.projects);
 

@@ -28,7 +28,7 @@ export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
       <div className="flex justify-between">
         <h1 className="font-bold">Assigned personnel: </h1>
         <Input
-          className="bg-gray-100 absolute px-1 top-0 right-0.5 text-sm"
+          className="bg-[#ededed] absolute px-1 top-0 shadow-inner right-0.5 text-sm"
           placeholder="Search"
           onChange={handleSearch}
         />

@@ -21,7 +21,7 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <section className="m-5 relative p-1 h-4/5 bg-[#fff] flex flex-col justify-around">
+    <section className="m-1 relative p-1 h-4/5 bg-[#fff] flex flex-col justify-around">
       <h1 className="text-lg absolute top-1">Project details</h1>
       <div className="flex flex-col">
         <h1>
