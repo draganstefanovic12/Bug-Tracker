@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "../axios/interceptors";
 
 type AssignRoleProps = {
-  user: User[];
+  user: User[] | undefined;
 };
 
 export const AssignRole = ({ user }: AssignRoleProps) => {
@@ -30,22 +30,25 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 items-center w-2/4">
+    <div className="flex flex-col gap-5 pl-5 w-2/4 items-center">
       <h1>Assign a role to one or multiple users</h1>
-      <select multiple className="w-2/6" onChange={handleUser}>
+      <select multiple className="w-3/6" onChange={handleUser}>
         {user?.map((user: User, i) => (
           <option key={i} value={user.username}>
             {user.username}
           </option>
         ))}
       </select>
-      <select className="w-2/6" onChange={handleRole}>
+      <select className="w-3/6" onChange={handleRole}>
         <option className="text-center">--SELECT A ROLE--</option>
         <option value="admin">Admin</option>
         <option value="developer">Developer</option>
         <option value="user">User</option>
       </select>
-      <Button className="flex btn-form align-middle" onClick={handleAssign}>
+      <Button
+        className="flex items-center btn-form text-center flex-col"
+        onClick={handleAssign}
+      >
         Submit
       </Button>
     </div>
