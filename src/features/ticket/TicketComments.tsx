@@ -39,16 +39,16 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
     <div>
       <h1 className="font-bold">Ticket comments</h1>
       <div className="bg-[#fff] p-2 w-2/4 shadow relative">
-        <div className="flex bg-[#fff] p-2">
-          <p className="w-full font-bold border-b-2">User</p>
-          <p className="w-full font-bold border-b-2">Message</p>
-          <p className="w-full font-bold border-b-2">Created at</p>
+        <div className="child:w-full child:font-bold child: border-b-2 flex bg-[#fff] p-2">
+          <p>User</p>
+          <p>Message</p>
+          <p>Created at</p>
         </div>
-        {ticket?.comments.map((comment: Comment) => (
-          <div className="flex p-2">
-            <p className="w-full border-b-2">{comment.commenter}</p>
-            <p className="w-full border-b-2">{comment.message}</p>
-            <p className="w-full border-b-2">{comment.created!.slice(0, 10)}</p>
+        {ticket?.comments.map((comment: Comment, i) => (
+          <div key={i} className="child:w-full child:border-b-2 flex p-2">
+            <p>{comment.commenter}</p>
+            <p>{comment.message}</p>
+            <p>{comment.created!.slice(0, 10)}</p>
           </div>
         ))}
         <div className="p-2">

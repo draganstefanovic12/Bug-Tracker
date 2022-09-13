@@ -1,26 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
-import { Project } from "../types/types";
-import { useFetch } from "../hooks/useFetch";
-import { addProject } from "../features/projects/projectSlice";
+import { useState } from "react";
 import { CreateProject } from "../features/projects/CreateProject";
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
-
-type Data = {
-  projects: Project[];
-};
+import { useAppSelector } from "../hooks/useRedux";
 
 export const Projects = () => {
-  const dispatch = useAppDispatch();
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const projects = useAppSelector((projects) => projects.projects.projects);
-  const data: Data = useFetch("api/projects/all")!;
-
-  useEffect(() => {
-    //add project pushes the new project into the fetched array of projects
-    data && dispatch(addProject(data.projects));
-  }, [data, dispatch]);
 
   const handleCreate = () => {
     setIsCreating(true);

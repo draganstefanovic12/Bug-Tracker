@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Input } from "../../components/Input/Input";
 import { Ticket } from "../../types/types";
 import { useState } from "react";
-import { Listings } from "../../components/Listings/Listings";
+import { Categories } from "../../components/Categories/Categories";
 
 type TicketsProps = {
   tickets: Ticket[] | undefined;
@@ -36,14 +36,14 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
         placeholder="Search"
         onChange={handleSearch}
       />
-      <Listings children={project} />
-      {ticket?.map((ticket: Ticket) => (
-        <li className="flex text-sm mt-1 border-b-2">
-          <p className="w-32">{ticket.title}</p>
-          <p className="w-32">{ticket.submitter}</p>
-          <p className="w-32">{ticket.status}</p>
-          <p className="w-32">{ticket.developer}</p>
-          <p className="w-32">{ticket.created.slice(0, 10)}</p>
+      <Categories children={project} />
+      {ticket?.map((ticket: Ticket, i) => (
+        <li key={i} className="child:w-32 flex text-sm mt-1 border-b-2">
+          <p>{ticket.title}</p>
+          <p>{ticket.submitter}</p>
+          <p>{ticket.status}</p>
+          <p>{ticket.developer}</p>
+          <p>{ticket.created.slice(0, 10)}</p>
           <Link
             className="hover:underline"
             to={`/tickets/${ticket.project}/${ticket.title}`}
