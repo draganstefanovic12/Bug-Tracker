@@ -22,6 +22,7 @@ module.exports = {
         projects: "url('./assets/images/projects.svg')",
         tickets: "url('./assets/images/tickets.svg')",
         users: "url('./assets/images/users.svg')",
+        notification: "url('./assets/images/notification.svg')",
       },
     },
   },
