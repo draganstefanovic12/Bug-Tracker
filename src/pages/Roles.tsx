@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export const Roles = () => {
   const [user, setUser] = useState<User[]>();
+
   //Role assignment
   const users = useFetch("api/users/all");
 
