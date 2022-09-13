@@ -1,14 +1,9 @@
-import { logout } from "../../features/user/userSlice";
-import { Button } from "../Button/Button";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useState } from "react";
+import { useAppSelector } from "../../hooks/useRedux";
 
 export const Nav = () => {
   const user = useAppSelector((user) => user.user)!;
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  const [notifications, setNotifications] = useState();
 
   return (
     <nav className="flex justify-between px-1 h-9 bg-[#fff] drop-shadow">

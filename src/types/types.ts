@@ -13,6 +13,7 @@ export type User = {
   username: string;
   email: string;
   role: string;
+  notifications: [];
 };
 
 export type Ticket = {
@@ -33,4 +34,10 @@ export type Comment = {
   commenter: string | undefined;
   message: string;
   created?: string;
+};
+
+export type Notification = {
+  comment: string;
+  created: string;
+  read: boolean;
 };

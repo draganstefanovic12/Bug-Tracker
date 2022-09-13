@@ -16,7 +16,7 @@ export const Projects = () => {
   const categories = ["Name", "Description", "Options"];
 
   return (
-    <section className="flex px-1">
+    <section className="flex p-1">
       <div className="flex flex-col w-full md:block">
         <ul className="flex flex-col gap-3 w-full p-1 bg-[#fff] text-sm shadow relative">
           <h1 className="font-bold text-lg">Projects</h1>

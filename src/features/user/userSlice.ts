@@ -17,6 +17,7 @@ export type UserFulfilled = {
   error?: string | undefined;
   state?: string;
   role?: string;
+  notifications?: Notification[];
 };
 
 const initialState = null as UserState;
