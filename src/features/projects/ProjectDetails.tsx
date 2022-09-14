@@ -3,6 +3,7 @@ import { Project } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
 import { ProjectTickets } from "./ProjectTickets";
 import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
+import { AssignUsersToProjects } from "./AssignUsersToProjects";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";
 
@@ -21,21 +22,24 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <section className="m-1 relative p-1 h-4/5 bg-[#fff] flex flex-col justify-around">
-      <h1 className="text-lg absolute top-1">Project details</h1>
-      <div className="flex flex-col">
-        <h1>
-          Project name: <b>{project?.name}</b>
-        </h1>
-        <h1>
-          Project description: <b>{project?.description}</b>
-        </h1>
-        <h1>
-          Project link:
-          <a className="underline pl-1" href={project?.link}>
-            {project?.link}
-          </a>
-        </h1>
+    <section className="m-1 relative p-1 flex flex-col justify-around">
+      <div className="flex w-full">
+        <div className="w-2/4">
+          <h1 className="text-lg absolute top-1">Project details</h1>
+          <h1>
+            Project name: <b>{project?.name}</b>
+          </h1>
+          <h1>
+            Project description: <b>{project?.description}</b>
+          </h1>
+          <h1>
+            Project link:
+            <a className="underline pl-1" href={project?.link}>
+              {project?.link}
+            </a>
+          </h1>
+        </div>
+        <AssignUsersToProjects project={project} />
       </div>
       <div className="flex p-1 gap-9 bg-[#fff]">
         <AssignedPersonnel assignedUsers={project?.assigned} />

@@ -49,7 +49,7 @@ export const Tickets = () => {
       <Categories children={categories} className="gap-32" />
       {tickets?.map((ticket, i) => (
         <Link key={i} to={`/tickets/${ticket.project}/${ticket.title}`}>
-          <div className="child:w-32 h-12 items-center child:whitespace-nowrap flex border-b-2 gap-32 hover:bg-slate-50 hover:cursor-pointer">
+          <div className="child:w-32 text-sm h-12 items-center child:whitespace-nowrap flex border-b-2 gap-32 hover:bg-slate-50 hover:cursor-pointer">
             <p>{ticket.title}</p>
             <p>{ticket.submitter}</p>
             <p>{ticket.priority}</p>

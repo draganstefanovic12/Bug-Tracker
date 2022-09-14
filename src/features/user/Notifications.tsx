@@ -1,8 +1,8 @@
 import { Button } from "../../components/Button/Button";
 import { Notification } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
-import { useEffect, useRef, useState } from "react";
 import { ClickAwayListener } from "../../components/ClickAwayListener/ClickAwayListener";
+import { useEffect, useRef, useState } from "react";
 import axios from "../axios/interceptors";
 
 export const Notifications = () => {
@@ -34,14 +34,15 @@ export const Notifications = () => {
   };
 
   //Using the length of unread notifications to show notification numbers
-  const unreadNotifs = notifications.filter(
+  const unread = notifications.filter(
     (notif: Notification) => notif.read === false
   );
 
   const notifs = notifications?.map((notif: Notification) => (
-    <li className="text-sm">{notif.comment}</li>
+    <li className="text-sm list-none text-gray-600">{notif.comment}</li>
   ));
 
+  const notifStyles = unread.length > 0 ? "text-red-600" : "text-gray-500";
   const notifRef = useRef<HTMLDivElement>(null);
   return (
     <div ref={notifRef} className="w-44 flex items-center">
@@ -49,15 +50,14 @@ export const Notifications = () => {
         onClick={handeToggle}
         className="after:content-notification text-sm flex"
       >
-        Notifications
+        <p className={`${notifStyles} text-sm`}>{unread.length}</p>
       </Button>
-      <p className="text-red-500 text-sm">{unreadNotifs.length}</p>
       <ClickAwayListener
         isOpen={isOpen}
         notifRef={notifRef}
         setIsOpen={setIsOpen}
       >
-        <div className="absolute">{notifs}</div>
+        <div className="absolute bg-[#fff] p-1 top-9 right-16">{notifs}</div>
       </ClickAwayListener>
     </div>
   );

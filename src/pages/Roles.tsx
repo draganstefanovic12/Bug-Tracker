@@ -1,8 +1,8 @@
 import { User } from "../types/types";
 import { useFetch } from "../hooks/useFetch";
 import { Categories } from "../components/Categories/Categories";
-import { useEffect, useState } from "react";
 import { AssignRole } from "../features/roles/AssignRole";
+import { useEffect, useState } from "react";
 
 export const Roles = () => {
   const [user, setUser] = useState<User[]>();
@@ -21,7 +21,7 @@ export const Roles = () => {
         <h1 className="font-bold">All users</h1>
         <Categories
           children={["Name", "Email", "Role"]}
-          className=" gap-40 child:w-20"
+          className="gap-40 child:w-20"
         />
         {user?.map((user: User, i) => (
           <div

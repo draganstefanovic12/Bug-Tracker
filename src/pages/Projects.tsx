@@ -36,12 +36,6 @@ export const Projects = () => {
               <p className="w-20 whitespace-nowrap">{project.description}</p>
               <div className="flex flex-col">
                 <Link
-                  className="hover:underline w-20 whitespace-nowrap"
-                  to={`/projects/${project.name}/users`}
-                >
-                  Manage users
-                </Link>
-                <Link
                   className="hover:underline w-20"
                   to={`/projects/${project.name}/`}
                 >

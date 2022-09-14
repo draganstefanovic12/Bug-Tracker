@@ -30,9 +30,9 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 pl-5 w-2/4 items-center">
-      <h1>Assign a role to one or multiple users</h1>
-      <select multiple className="w-3/6" onChange={handleUser}>
+    <div className="flex flex-col gap-5 pl-5 w-2/4">
+      <h1 className="font-bold">Assign a role to one or multiple users</h1>
+      <select multiple className="w-3/6 overflow-auto" onChange={handleUser}>
         {user?.map((user: User, i) => (
           <option key={i} value={user.username}>
             {user.username}
