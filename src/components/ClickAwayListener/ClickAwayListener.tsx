@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 type ListenerProps = {
   children: JSX.Element;
@@ -22,5 +22,5 @@ export const ClickAwayListener = ({
     document.addEventListener("click", handleCLickAway);
   }, [notifRef, setIsOpen]);
 
-  return <div>{isOpen && <>{children}</>}</div>;
+  return <>{isOpen && children}</>;
 };
