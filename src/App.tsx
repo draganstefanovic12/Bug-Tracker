@@ -6,9 +6,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav";
+import { Roles } from "./pages/Roles";
 import { login } from "./features/user/userSlice";
 import { Login } from "./pages/Login";
 import { Ticket } from "./features/ticket/Ticket";
+import { Project } from "./types/types";
 import { Tickets } from "./pages/Tickets";
 import { useFetch } from "./hooks/useFetch";
 import { Projects } from "./pages/Projects";
@@ -20,12 +22,15 @@ import { addProject } from "./features/projects/projectSlice";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
-import { Project } from "./types/types";
-import { Roles } from "./pages/Roles";
+import axios from "axios";
 
 type Data = {
   projects: Project[];
 };
+
+//Checking for existing user on page load
+//If user exists in localStorage, I fetch the users info to check for new notifications
+//Fetching all projects on page load
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
@@ -33,12 +38,17 @@ const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    //Checking for existing user on page load
-    //Fetching all projects on page load
     data && dispatch(addProject(data.projects));
-    const user = localStorage.getItem("BTUser");
+    const user = JSON.parse(localStorage.getItem("BTUser")!);
+
     if (user) {
-      dispatch(login(JSON.parse(user)));
+      const handleUpdateUser = async () => {
+        const data = await axios.get(`api/users/user/${user?.username}`);
+        const updatedUser = { ...user, notifications: data.data.notifications };
+        localStorage.setItem("BTUser", JSON.stringify(updatedUser));
+      };
+      dispatch(login(user));
+      handleUpdateUser();
     }
   }, [data, dispatch]);
 
