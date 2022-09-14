@@ -3,6 +3,7 @@ import { Notification } from "../../types/types";
 import { useAppSelector } from "../../hooks/useRedux";
 import { ClickAwayListener } from "../../components/ClickAwayListener/ClickAwayListener";
 import { useEffect, useRef, useState } from "react";
+import { formatDistanceToNow } from "date-fns";
 import axios from "../axios/interceptors";
 
 export const Notifications = () => {
@@ -38,10 +39,6 @@ export const Notifications = () => {
     (notif: Notification) => notif.read === false
   );
 
-  const notifs = notifications?.map((notif: Notification) => (
-    <li className="text-sm list-none text-gray-600">{notif.comment}</li>
-  ));
-
   const notifStyles = unread.length > 0 ? "text-red-600" : "text-gray-500";
   const notifRef = useRef<HTMLDivElement>(null);
   return (
@@ -57,7 +54,16 @@ export const Notifications = () => {
         notifRef={notifRef}
         setIsOpen={setIsOpen}
       >
-        <div className="absolute bg-[#fff] p-1 top-9 right-16">{notifs}</div>
+        <div className="absolute bg-[#fff] p-1 top-9 right-36">
+          {notifications?.slice(0, 10).map((notif: Notification) => (
+            <div className="text-sm p-1 list-none">
+              <li>{notif.comment}</li>
+              <li className="text-slate-600 border-b-2">
+                {formatDistanceToNow(new Date(notif.created))} ago
+              </li>
+            </div>
+          ))}
+        </div>
       </ClickAwayListener>
     </div>
   );

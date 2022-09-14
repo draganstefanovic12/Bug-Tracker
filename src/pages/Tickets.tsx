@@ -39,7 +39,7 @@ export const Tickets = () => {
   }, [projects]);
 
   return (
-    <div className="bg-[#fff] m-1 p-1 relative">
+    <div className="bg-[#fff] m-1 p-1 gap-2 flex flex-col relative">
       <h1 className="text-lg font-bold">All tickets</h1>
       <Input
         className="bg-[#ededed] absolute px-1 top-1.5 right-1 shadow-inner text-sm"
@@ -48,15 +48,20 @@ export const Tickets = () => {
       />
       <Categories children={categories} className="gap-32" />
       {tickets?.map((ticket, i) => (
-        <Link key={i} to={`/tickets/${ticket.project}/${ticket.title}`}>
-          <div className="child:w-32 text-sm h-12 items-center child:whitespace-nowrap flex border-b-2 gap-32 hover:bg-slate-50 hover:cursor-pointer">
-            <p>{ticket.title}</p>
-            <p>{ticket.submitter}</p>
-            <p>{ticket.priority}</p>
-            <p>{ticket.type}</p>
-            <p>{ticket.created.slice(0, 10)}</p>
-          </div>
-        </Link>
+        <div className="child:w-32 text-sm h-8 items-center child:whitespace-nowrap flex border-b-2 gap-32 hover:bg-slate-50">
+          <p>{ticket.title}</p>
+          <p>{ticket.submitter}</p>
+          <p>{ticket.priority}</p>
+          <p>{ticket.type}</p>
+          <p>{ticket.created.slice(0, 10)}</p>
+          <Link
+            className="hover:underline"
+            key={i}
+            to={`/tickets/${ticket.project}/${ticket.title}`}
+          >
+            See more
+          </Link>
+        </div>
       ))}
     </div>
   );

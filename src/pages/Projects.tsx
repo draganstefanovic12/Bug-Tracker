@@ -18,7 +18,7 @@ export const Projects = () => {
   return (
     <section className="flex p-1">
       <div className="flex flex-col w-full md:block">
-        <ul className="flex flex-col gap-3 w-full p-1 bg-[#fff] text-sm shadow relative">
+        <ul className="flex flex-col gap-2 w-full p-1 bg-[#fff] text-sm shadow relative">
           <h1 className="font-bold text-lg">Projects</h1>
           <Button
             className="btn-form w-36 h-6 absolute right-1"
@@ -28,10 +28,13 @@ export const Projects = () => {
           </Button>
           <Categories
             children={categories}
-            className="justify-between child:w-20 p-1"
+            className="justify-between child:w-20"
           />
           {projects?.map((project, i: number) => (
-            <li key={i} className="flex p-1 justify-between shadow-sm">
+            <li
+              key={i}
+              className="flex p-1 justify-between shadow-sm hover:bg-slate-50"
+            >
               <p className="w-20">{project.name}</p>
               <p className="w-20 whitespace-nowrap">{project.description}</p>
               <div className="flex flex-col">
