@@ -33,12 +33,15 @@ type Data = {
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
-  const data: Data = useFetch("api/projects/all")!;
+  const data: Data = useFetch(
+    "https://drg-bug-tracker.herokuapp.com/projects/all"
+  )!;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     data && dispatch(addProject(data.projects));
     const user = JSON.parse(localStorage.getItem("BTUser")!);
+    dispatch(login(user));
 
     if (user) {
       const handleUpdateUser = async () => {
