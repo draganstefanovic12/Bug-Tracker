@@ -4,6 +4,7 @@ type InputProps = {
   className?: string;
   placeholder: string;
   value?: string;
+  disabled?: boolean;
 };
 
 export const Input = ({
@@ -12,12 +13,14 @@ export const Input = ({
   className,
   placeholder,
   value,
+  disabled,
 }: InputProps) => {
   return (
     <div>
       <label className="text-sm">{label}</label>
       <input
         value={value}
+        disabled={disabled}
         placeholder={placeholder}
         className={className}
         onChange={onChange}

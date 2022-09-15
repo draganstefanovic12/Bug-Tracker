@@ -8,6 +8,7 @@ type ThunkUser = {
   username: string;
   password: string;
   email?: string;
+  role?: string;
   api: "login" | "register";
 };
 
@@ -32,6 +33,7 @@ export const actionAsync = createAsyncThunk(
           username: user.username,
           password: user.password,
           email: user.email,
+          role: user.role,
         },
       });
       return response.data;
@@ -65,6 +67,7 @@ export const userSlice = createSlice({
         actionAsync.fulfilled,
         (user, action: PayloadAction<UserFulfilled>) => {
           localStorage.setItem("BTUser", JSON.stringify(action.payload));
+          userSlice.actions.login(action.payload);
           return {
             ...user,
             username: action.payload.username,

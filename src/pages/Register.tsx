@@ -4,9 +4,12 @@ import { actionAsync } from "../features/user/userSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
 import * as Yup from "yup";
+import { DemoUserSelection } from "../features/user/DemoUserSelection";
+import { useState } from "react";
 
 export const Register = () => {
   const user = useAppSelector((user) => user.user);
+  const [demoUser, setDemoUser] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   //Yup schema for registration
@@ -25,8 +28,12 @@ export const Register = () => {
     ),
   });
 
+  const handleDemoUser = () => {
+    setDemoUser(!demoUser);
+  };
+
   return (
-    <div className="flex flex-col gap-5 h-full justify-center items-center col-span-2 row-span-2">
+    <div className="flex flex-col gap-5 h-full justify-center bg-[#fff] items-center col-span-2 row-span-2">
       <h1 className="after:content-[url('./assets/images/bug.svg')] justify-center flex items-center">
         Welcome to Bug Tracker
       </h1>
@@ -46,68 +53,79 @@ export const Register = () => {
           user?.state !== "pending" && setSubmitting(false);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form className="flex bg-[#fff] flex-col justify-center items-center text-center p-3 gap-3 h-3/5 w-80 rounded shadow appearance-none border">
-            <h1 className="text-lg">Register</h1>
-            <Field
-              type="username"
-              name="username"
-              placeholder="Username"
-              className="input-field"
-            />
-            <ErrorMessage
-              name="username"
-              component="div"
-              className="text-xs text-red-600"
-            />
-            <Field
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="input-field"
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="text-xs text-red-600"
-            />
-            <Field
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="input-field"
-            />
-            <Field
-              type="password"
-              name="passwordConfirmation"
-              placeholder="Confirm Password"
-              className="input-field"
-            />
-            <ErrorMessage
-              name="password"
-              component="div"
-              className="text-xs text-red-600"
-            />
-            {user?.error && <div className="text-red-600">{user.error}</div>}
-            <Button disabled={isSubmitting} type="submit" className="btn-form">
-              Submit
-            </Button>
-            <div className="flex flex-col text-xs w-auto items-center">
-              <Link to="/login" className="hover:cursor-pointer w-12 underline">
-                Login
-              </Link>
-              <p>
-                Sign in as a
-                <span className="underline hover:cursor-pointer pl-1">
-                  Demo User
-                </span>
-              </p>
-              <p className="hover:cursor-pointer underline">
-                Forgot your password?
-              </p>
-            </div>
-          </Form>
-        )}
+        {({ isSubmitting }) =>
+          !demoUser ? (
+            <Form className="flex bg-[#fff] flex-col justify-center items-center text-center p-3 gap-3 h-3/5 w-80 rounded shadow appearance-none border">
+              <h1 className="text-lg">Register</h1>
+              <Field
+                type="username"
+                name="username"
+                placeholder="Username"
+                className="input-field"
+              />
+              <ErrorMessage
+                name="username"
+                component="div"
+                className="text-xs text-red-600"
+              />
+              <Field
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="input-field"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-xs text-red-600"
+              />
+              <Field
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="input-field"
+              />
+              <Field
+                type="password"
+                name="passwordConfirmation"
+                placeholder="Confirm Password"
+                className="input-field"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="text-xs text-red-600"
+              />
+              {user?.error && <div className="text-red-600">{user.error}</div>}
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+                className="btn-form"
+              >
+                Submit
+              </Button>
+              <div className="flex flex-col text-xs w-auto items-center">
+                <Link
+                  to="/login"
+                  className="hover:cursor-pointer w-12 underline"
+                >
+                  Login
+                </Link>
+                <p onClick={handleDemoUser}>
+                  Sign in as a
+                  <span className="underline hover:cursor-pointer pl-1">
+                    Demo User
+                  </span>
+                </p>
+                <p className="hover:cursor-pointer underline">
+                  Forgot your password?
+                </p>
+              </div>
+            </Form>
+          ) : (
+            <DemoUserSelection handleDemoUser={handleDemoUser} />
+          )
+        }
       </Formik>
     </div>
   );

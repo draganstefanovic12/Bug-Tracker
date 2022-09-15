@@ -23,16 +23,16 @@ export const DropdownMenu = () => {
     <div
       ref={divRef}
       onClick={handleToggle}
-      className="flex flex-col bg-[#fff] hover:cursor-pointer child:h-3.5 pl-2"
+      className="flex flex-col bg-[#fff] hover:cursor-pointer child:h-3.5 pr-10 w-16"
     >
       <p className="font-bold">{user.username}</p>
       <p>{user.role}</p>
       <ClickAwayListener isOpen={isOpen} setIsOpen={setIsOpen} divRef={divRef}>
-        <div className="flex flex-col py-2 child:bg-[#fff] bg-[#fff] absolute top-9">
-          <Link to="/settings" className="border-b-2">
-            Settings
-          </Link>
-          <Button onClick={handleLogout} className="rounded-b">
+        <div className="flex flex-col child:bg-[#fff] bg-[#fff] absolute top-9">
+          <Button
+            onClick={handleLogout}
+            className="rounded-b w-16 hover:bg-slate-100"
+          >
             Logout
           </Button>
         </div>

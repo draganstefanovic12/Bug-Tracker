@@ -46,6 +46,7 @@ const App = () => {
         const data = await axios.get(`api/users/user/${user?.username}`);
         const updatedUser = { ...user, notifications: data.data.notifications };
         localStorage.setItem("BTUser", JSON.stringify(updatedUser));
+        dispatch(login(updatedUser));
       };
       dispatch(login(user));
       handleUpdateUser();
@@ -61,6 +62,14 @@ const App = () => {
         </>
       )}
       <Routes>
+        <Route
+          path="/login"
+          element={!user?.username ? <Login /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/register"
+          element={!user?.username ? <Register /> : <Navigate to="/" />}
+        />
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/projects" element={<Projects />} />
@@ -69,14 +78,6 @@ const App = () => {
           <Route path="/tickets/:name/:title" element={<Ticket />} />
           <Route path="/roles" element={<Roles />} />
         </Route>
-        <Route
-          path="/login"
-          element={!user ? <Login /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/register"
-          element={!user ? <Register /> : <Navigate to="/" />}
-        />
       </Routes>
     </Router>
   );

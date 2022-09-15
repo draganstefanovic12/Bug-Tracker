@@ -21,12 +21,12 @@ export const Roles = () => {
         <h1 className="font-bold">All users</h1>
         <Categories
           children={["Name", "Email", "Role"]}
-          className="gap-40 child:w-20"
+          className="gap-40 child:w-20 p-1"
         />
         {user?.map((user: User, i) => (
           <div
             key={i}
-            className="flex child:w-20 gap-40 child:text-sm bg-[#fff] relative"
+            className="flex child:w-20 gap-40 child:text-sm bg-[#fff] relative p-1 hover:bg-slate-100"
           >
             <p>{user.username}</p>
             <p>{user.email}</p>

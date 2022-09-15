@@ -10,6 +10,7 @@ import axios from "../axios/interceptors";
 export const ProjectDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const user = useAppSelector((user) => user.user?.role);
   const projects = useAppSelector((projects) => projects.projects.projects);
   const project = projects.find(
     (project: Project) => project.name === params.project
@@ -41,16 +42,18 @@ export const ProjectDetails = () => {
         </div>
         <AssignUsersToProjects project={project} />
       </div>
-      <div className="flex p-1 gap-9 bg-[#fff] rounded">
+      <div className="flex p-1 gap-9 rounded">
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>
-      <Button
-        className="btn-form bg-red-600 hover:bg-red-700 shadow absolute bottom-5 right-5"
-        onClick={handleDelete}
-      >
-        Delete
-      </Button>
+      {user === "admin" && (
+        <Button
+          className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute top-4 right-5"
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
+      )}
     </section>
   );
 };

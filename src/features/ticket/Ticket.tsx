@@ -21,7 +21,7 @@ export const Ticket = () => {
   }, [params.name, params.title, projects]);
 
   return (
-    <div className="p-2">
+    <div className="p-2 w-full gap-3 flex">
       <TicketInfo ticket={ticket} />
       <TicketComments ticket={ticket} setTickets={setTicket} />
     </div>

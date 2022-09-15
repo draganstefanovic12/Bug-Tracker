@@ -18,16 +18,16 @@ export type User = {
 
 export type Ticket = {
   title: string;
-  submitter: string;
+  submitter: string | undefined;
   status: string;
-  developer: string;
+  developer: string | undefined;
   created: string;
   project: string;
   description: string;
   type: string;
   priority: string;
-  comments: Comment[];
-  updates: string[];
+  comments?: Comment[];
+  updates?: string[];
 };
 
 export type Comment = {
