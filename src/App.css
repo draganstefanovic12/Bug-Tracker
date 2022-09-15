@@ -33,6 +33,7 @@ nav {
 h1,
 h2,
 h3 {
+  color: #5c6070;
   font-family: var(--font-secondary);
 }
 

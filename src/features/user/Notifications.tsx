@@ -51,12 +51,12 @@ export const Notifications = () => {
       </Button>
       <ClickAwayListener
         isOpen={isOpen}
-        notifRef={notifRef}
+        divRef={notifRef}
         setIsOpen={setIsOpen}
       >
-        <div className="absolute bg-[#fff] rounded flex flex-col-reverse p-1 top-9 right-36">
+        <div className="absolute bg-[#fff] rounded flex flex-col-reverse p-1 top-9 right-14">
           {notifications?.slice(0, 10).map((notif: Notification) => (
-            <div className="text-sm w-44 p-1 list-none">
+            <div className="text-sm p-1 list-none">
               <li>{notif.comment}</li>
               <li className="text-slate-600 border-b-2">
                 {formatDistanceToNow(new Date(notif.created))} ago

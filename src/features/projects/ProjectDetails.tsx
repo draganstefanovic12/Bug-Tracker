@@ -26,22 +26,22 @@ export const ProjectDetails = () => {
       <div className="flex w-full">
         <div className="w-2/4">
           <h1 className="text-lg absolute top-1">Project details</h1>
-          <h1>
+          <p>
             Project name: <b>{project?.name}</b>
-          </h1>
-          <h1>
+          </p>
+          <p>
             Project description: <b>{project?.description}</b>
-          </h1>
-          <h1>
+          </p>
+          <p>
             Project link:
             <a className="underline pl-1" href={project?.link}>
               {project?.link}
             </a>
-          </h1>
+          </p>
         </div>
         <AssignUsersToProjects project={project} />
       </div>
-      <div className="flex p-1 gap-9 bg-[#fff]">
+      <div className="flex p-1 gap-9 bg-[#fff] rounded">
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>

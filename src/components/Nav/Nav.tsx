@@ -1,5 +1,6 @@
 import { Notifications } from "../../features/user/Notifications";
 import { useAppSelector } from "../../hooks/useRedux";
+import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 
 export const Nav = () => {
   const user = useAppSelector((user) => user.user)!;
@@ -9,12 +10,9 @@ export const Nav = () => {
       <h1 className="items-center w-44 after:content-whitebug bg-[#313648] text-[#fff] after:pt-2 pl-1 after:flex flex">
         Bug Tracker
       </h1>
-      <div className="items-center flex text-sm">
+      <div className="flex text-sm pr-2">
         <Notifications />
-        <div className="flex flex-col child:h-3">
-          <p>{user.username}</p>
-          <p>{user.role}</p>
-        </div>
+        <DropdownMenu />
       </div>
     </nav>
   );
