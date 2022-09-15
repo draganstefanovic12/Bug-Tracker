@@ -49,7 +49,7 @@ export const ProjectDetails = () => {
         className="btn-form bg-red-600 hover:bg-red-700 shadow absolute bottom-5 right-5"
         onClick={handleDelete}
       >
-        Delete project
+        Delete
       </Button>
     </section>
   );

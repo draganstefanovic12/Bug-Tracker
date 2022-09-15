@@ -37,9 +37,9 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
 
   return (
     <div>
-      <h1 className="font-bold">Ticket comments</h1>
-      <div className="bg-[#fff] p-2 w-2/4 shadow relative">
-        <div className="child:w-full child:font-bold child: border-b-2 flex bg-[#fff] p-2">
+      <h1 className="font-bold pt-1">Ticket comments</h1>
+      <div className="bg-[#fff] p-2 w-2/4 text-sm rounded shadow relative">
+        <div className="child:w-full child:font-bold border-b-2 flex bg-[#fff] p-2">
           <p>User</p>
           <p>Message</p>
           <p>Created at</p>
@@ -60,7 +60,7 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
           />
           <Button
             onClick={handleComment}
-            className="absolute h-10 right-3 btn-form w-24 bottom-4"
+            className="absolute h-9 right-3 btn-form w-24 bottom-4"
           >
             Comment
           </Button>

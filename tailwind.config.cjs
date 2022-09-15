@@ -23,6 +23,8 @@ module.exports = {
         tickets: "url('./assets/images/tickets.svg')",
         users: "url('./assets/images/users.svg')",
         notification: "url('./assets/images/notification.svg')",
+        bug: "url('./assets/images/bug.svg')",
+        whitebug: "url('./assets/images/bugw.svg')",
       },
     },
   },

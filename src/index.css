@@ -9,10 +9,10 @@
   }
 
   .dashboard-link {
-    @apply flex gap-1 hover:bg-[#24436D] pl-1 before:translate-y-0.5 truncate;
+    @apply flex gap-1 hover:bg-[#313648] pl-1 before:translate-y-0.5 truncate;
   }
 
   .btn-form {
-    @apply bg-[#1D3557] hover:bg-[#24436D] text-white w-20 h-7 font-bold px-2 rounded focus:outline-none;
+    @apply bg-[#252a34] hover:bg-[#313648] text-white w-20 h-7 font-bold px-2 rounded focus:outline-none;
   }
 }

@@ -42,7 +42,7 @@ export const Notifications = () => {
   const notifStyles = unread.length > 0 ? "text-red-600" : "text-gray-500";
   const notifRef = useRef<HTMLDivElement>(null);
   return (
-    <div ref={notifRef} className="w-44 flex items-center">
+    <div ref={notifRef} className="flex items-center">
       <Button
         onClick={handeToggle}
         className="after:content-notification text-sm flex"
@@ -54,9 +54,9 @@ export const Notifications = () => {
         notifRef={notifRef}
         setIsOpen={setIsOpen}
       >
-        <div className="absolute bg-[#fff] p-1 top-9 right-36">
+        <div className="absolute bg-[#fff] rounded flex flex-col-reverse p-1 top-9 right-36">
           {notifications?.slice(0, 10).map((notif: Notification) => (
-            <div className="text-sm p-1 list-none">
+            <div className="text-sm w-44 p-1 list-none">
               <li>{notif.comment}</li>
               <li className="text-slate-600 border-b-2">
                 {formatDistanceToNow(new Date(notif.created))} ago

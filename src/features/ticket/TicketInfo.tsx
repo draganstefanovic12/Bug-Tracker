@@ -8,7 +8,7 @@ export const TicketInfo = ({ ticket }: InfoProps) => {
   return (
     <>
       <h1 className="font-bold">Details for Ticket {ticket?.title}</h1>
-      <div className="bg-[#fff] w-2/4 flex gap-5 p-2 shadow">
+      <div className="bg-[#fff] text-sm w-2/4 flex gap-5 p-2 rounded shadow">
         <div className="gap-4 flex flex-col">
           <p className="font-bold h-7">Ticket Description</p>
           <p className="border-b-2 h-7 text-gray-700">{ticket?.description}</p>
