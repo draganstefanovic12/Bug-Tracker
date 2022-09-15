@@ -8,7 +8,7 @@ export const Roles = () => {
   const [user, setUser] = useState<User[]>();
 
   //Role assignment
-  const users = useFetch("api/users/all");
+  const users = useFetch("https://drg-bug-tracker.herokuapp.com/users/all");
 
   useEffect(() => {
     setUser(users);

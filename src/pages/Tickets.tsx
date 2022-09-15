@@ -47,8 +47,6 @@ export const Tickets = () => {
     setIsCreating(true);
   };
 
-  console.log(tickets);
-
   return (
     <div className="bg-[#fff] m-1 rounded p-1 gap-2 flex flex-col relative">
       <h1 className="text-lg font-bold text-[#5c6070]">All tickets</h1>

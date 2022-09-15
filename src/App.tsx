@@ -42,12 +42,13 @@ const App = () => {
 
     if (user) {
       const handleUpdateUser = async () => {
-        const data = await axios.get(`api/users/user/${user?.username}`);
+        const data = await axios.get(
+          `https://drg-bug-tracker.herokuapp.com/users/user/${user?.username}`
+        );
         const updatedUser = { ...user, notifications: data.data.notifications };
         localStorage.setItem("BTUser", JSON.stringify(updatedUser));
         dispatch(login(updatedUser));
       };
-      dispatch(login(user));
       handleUpdateUser();
     }
   }, [data, dispatch]);

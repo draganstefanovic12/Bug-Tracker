@@ -17,13 +17,16 @@ export const ticketAsync = createAsyncThunk(
   "tickets/new",
   async (ticket: Ticket) => {
     try {
-      const response = await axios("api/projects/ticket", {
-        method: "POST",
-        data: {
-          ticket: ticket,
-          proj: ticket.project,
-        },
-      });
+      const response = await axios(
+        "https://drg-bug-tracker.herokuapp.com/projects/ticket",
+        {
+          method: "POST",
+          data: {
+            ticket: ticket,
+            proj: ticket.project,
+          },
+        }
+      );
       return response.data;
     } catch (err: any) {
       const response = err.response.data.message;

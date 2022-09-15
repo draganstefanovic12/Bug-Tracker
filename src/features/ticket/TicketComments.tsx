@@ -33,7 +33,10 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
     }
     setValue("");
     setTickets({ ...ticket!, comments: [...ticket!.comments!, comment] });
-    await axios.post("api/projects/comment", options);
+    await axios.post(
+      "https://drg-bug-tracker.herokuapp.com/projects/comment",
+      options
+    );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
