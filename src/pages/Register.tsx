@@ -117,9 +117,6 @@ export const Register = () => {
                     Demo User
                   </span>
                 </p>
-                <p className="hover:cursor-pointer underline">
-                  Forgot your password?
-                </p>
               </div>
             </Form>
           ) : (

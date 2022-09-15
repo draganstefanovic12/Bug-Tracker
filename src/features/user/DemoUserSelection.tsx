@@ -24,8 +24,8 @@ export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
   };
 
   return (
-    <div className="items-center flex flex-col">
-      <h1>Select a role you would like to preview: </h1>
+    <div className="items-center flex border shadow p-5 flex-col">
+      <h1 className="mb-5">Select a role you would like to preview: </h1>
       <div className="flex gap-5">
         <p
           className="before:content-user hover:cursor-pointer hover:bg-slate-100 w-2/4 before:block flex flex-col items-center"

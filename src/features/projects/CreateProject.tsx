@@ -23,7 +23,7 @@ export const CreateProject = ({ setIsCreating }: CreateProps) => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className="flex bg-[#fff] flex-col md:w-2/4 sm:w-3/4 absolute top-0 left-0 translate-x-2/4 translate-y-1/4 p-2 gap-2 shadow rounded">
+          <Form className="flex border bg-[#fff] flex-col md:w-2/4 sm:w-3/4 absolute top-0 left-0 translate-x-2/4 translate-y-1/4 p-2 gap-2 shadow rounded">
             <img
               src={close}
               alt="close"

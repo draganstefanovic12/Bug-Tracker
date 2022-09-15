@@ -26,7 +26,7 @@ export const ProjectDetails = () => {
     <section className="m-1 relative p-1 flex flex-col justify-around">
       <div className="flex w-full">
         <div className="w-2/4">
-          <h1 className="text-lg absolute top-1">Project details</h1>
+          <h1 className="text-lg top-1">Project details</h1>
           <p>
             Project name: <b>{project?.name}</b>
           </p>

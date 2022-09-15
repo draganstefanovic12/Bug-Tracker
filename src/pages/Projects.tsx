@@ -19,7 +19,7 @@ export const Projects = () => {
     <section className="flex p-1">
       <div className="flex flex-col w-full md:block">
         <ul className="flex flex-col gap-2 w-full p-1 bg-[#fff] rounded text-sm shadow relative">
-          <h1 className="font-bold text-lg">Projects</h1>
+          <h1 className="font-bold text-lg">All projects</h1>
           <Button
             className="btn-form w-36 h-6 absolute right-1"
             onClick={handleCreate}

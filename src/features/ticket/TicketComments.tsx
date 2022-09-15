@@ -18,7 +18,7 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
   const comment = {
     commenter: user,
     message: value,
-    created: JSON.stringify(new Date()),
+    created: new Date().toString(),
   };
   const options = {
     name: ticket?.project,
@@ -44,7 +44,7 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
   return (
     <div className="w-2/4">
       <h1 className="font-bold pt-1">Ticket comments</h1>
-      <div className="bg-[#fff] p-2 text-sm rounded shadow relative">
+      <div className="bg-[#fff] border p-2 text-sm rounded shadow relative">
         <div className="child:w-full child:font-bold border-b-2 flex bg-[#fff] p-2">
           <p>User</p>
           <p>Message</p>

@@ -14,7 +14,6 @@ import { Project } from "./types/types";
 import { Tickets } from "./pages/Tickets";
 import { useFetch } from "./hooks/useFetch";
 import { Projects } from "./pages/Projects";
-import { MainPage } from "./pages/MainPage";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
@@ -64,14 +63,13 @@ const App = () => {
       <Routes>
         <Route
           path="/login"
-          element={!user?.username ? <Login /> : <Navigate to="/" />}
+          element={!user?.username ? <Login /> : <Navigate to="/projects" />}
         />
         <Route
           path="/register"
-          element={!user?.username ? <Register /> : <Navigate to="/" />}
+          element={!user?.username ? <Register /> : <Navigate to="/projects" />}
         />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<MainPage />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:project" element={<ProjectDetails />} />
           <Route path="/tickets" element={<Tickets />} />

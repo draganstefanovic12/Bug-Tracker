@@ -35,7 +35,11 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
   return (
     <div className="flex flex-col gap-5 w-2/4">
       <h1>Assign this project to one or more personnel.</h1>
-      <select multiple className="w-3/6 overflow-auto" onChange={handleUser}>
+      <select
+        multiple
+        className="w-3/6 h-40 overflow-auto"
+        onChange={handleUser}
+      >
         {users?.map((user: User, i) => (
           <option key={i} className="p-1" value={user.username}>
             {user.username}

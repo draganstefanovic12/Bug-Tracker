@@ -24,9 +24,9 @@ export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
   };
 
   return (
-    <div>
+    <div className="h-96">
       <h1 className="font-bold">Assigned personnel:</h1>
-      <ul className="relative h-80 bg-[#fff] rounded p-2 shadow">
+      <ul className="relative h-full bg-[#fff] rounded p-2 shadow border">
         <div className="flex justify-between">
           <Input
             className="bg-[#ededed] absolute px-1 top-1 shadow-inner right-2 text-sm"

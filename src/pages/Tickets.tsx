@@ -47,6 +47,8 @@ export const Tickets = () => {
     setIsCreating(true);
   };
 
+  console.log(tickets);
+
   return (
     <div className="bg-[#fff] m-1 rounded p-1 gap-2 flex flex-col relative">
       <h1 className="text-lg font-bold text-[#5c6070]">All tickets</h1>
@@ -78,7 +80,9 @@ export const Tickets = () => {
           </Link>
         </div>
       ))}
-      {isCreating && <CreateTicket setIsCreating={setIsCreating} />}
+      {isCreating && (
+        <CreateTicket setIsCreating={setIsCreating} setTickets={setTickets} />
+      )}
     </div>
   );
 };

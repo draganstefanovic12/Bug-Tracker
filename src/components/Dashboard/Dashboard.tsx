@@ -3,7 +3,6 @@ import { useState } from "react";
 import menu from "../../assets/images/menu.svg";
 
 const links = [
-  { to: "/", img: "before:content-dashboard", name: "Dashboard" },
   { to: "/projects", img: "before:content-projects", name: "Manage Projects" },
   { to: "/tickets", img: "before:content-tickets", name: "Manage Tickets" },
   { to: "/roles", img: "before:content-users", name: "Manage Roles" },

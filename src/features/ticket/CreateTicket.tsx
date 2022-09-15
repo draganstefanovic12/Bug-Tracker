@@ -1,16 +1,20 @@
 import { Button } from "../../components/Button/Button";
-import { Project } from "../../types/types";
 import { UserSelect } from "../user/UserSelect";
 import { ticketAsync } from "./ticketSlice";
+import { Project, Ticket } from "../../types/types";
 import { Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import close from "../../assets/images/close.svg";
 
 type CreateTicketProps = {
   setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
+  setTickets: React.Dispatch<React.SetStateAction<Ticket[] | undefined>>;
 };
 
-export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
+export const CreateTicket = ({
+  setIsCreating,
+  setTickets,
+}: CreateTicketProps) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((user) => user.user?.username);
   const projects = useAppSelector((projects) => projects.projects.projects);
@@ -27,22 +31,25 @@ export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
           project: projects[0].name,
         }}
         onSubmit={(values, { setSubmitting }) => {
+          const comment = {
+            ...values,
+            status: "Open",
+            developer: user,
+            submitter: user,
+            created: JSON.stringify(new Date()),
+            comments: [],
+          };
           setIsCreating(false);
           setSubmitting(true);
-          dispatch(
-            ticketAsync({
-              ...values,
-              status: "Open",
-              developer: user,
-              submitter: user,
-              created: JSON.stringify(new Date()),
-              comments: [],
-            })
-          );
+          setTickets((currTicks: Ticket[] | undefined) => [
+            ...currTicks!,
+            comment,
+          ]);
+          dispatch(ticketAsync(comment));
         }}
       >
         {({ isSubmitting }) => (
-          <Form className="flex bg-[#fff] flex-col md:w-2/4 sm:w-3/4 absolute top-0 left-0 translate-x-2/4 p-2 gap-2 shadow rounded">
+          <Form className="flex border bg-[#fff] flex-col md:w-2/4 sm:w-3/4 absolute top-0 left-0 translate-x-2/4 p-2 gap-2 shadow rounded">
             <img
               alt="close"
               src={close}
