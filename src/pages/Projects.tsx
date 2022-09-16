@@ -1,17 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
-import { useState } from "react";
+import { addProject } from "../features/projects/projectSlice";
 import { Categories } from "../components/Categories/Categories";
 import { CreateProject } from "../features/projects/CreateProject";
-import { useAppSelector } from "../hooks/useRedux";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import axios from "../features/axios/interceptors";
 
 export const Projects = () => {
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const projects = useAppSelector((projects) => projects.projects.projects);
+  const dispatch = useAppDispatch();
 
   const handleCreate = () => {
     setIsCreating(true);
   };
+
+  useEffect(() => {
+    const handleProject = async () => {
+      const proj = await axios.get(
+        "https://drg-bug-tracker.herokuapp.com/projects/all"
+      );
+      proj && dispatch(addProject(proj.data.projects));
+    };
+    handleProject();
+  }, [dispatch]);
 
   const categories = ["Name", "Description", "Options"];
 

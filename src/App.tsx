@@ -21,10 +21,12 @@ import { addProject } from "./features/projects/projectSlice";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 type Data = {
-  projects: Project[];
+  data: {
+    projects: Project[];
+  };
 };
 
 //Checking for existing user on page load
@@ -33,13 +35,9 @@ type Data = {
 
 const App = () => {
   const user = useAppSelector((user) => user.user);
-  const data: Data = useFetch(
-    "https://drg-bug-tracker.herokuapp.com/projects/all"
-  )!;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    data && dispatch(addProject(data.projects));
     const user = JSON.parse(localStorage.getItem("BTUser")!);
     dispatch(login(user));
 
@@ -54,7 +52,7 @@ const App = () => {
       };
       handleUpdateUser();
     }
-  }, [data, dispatch]);
+  }, [dispatch]);
 
   return (
     <Router>

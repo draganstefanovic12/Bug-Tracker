@@ -69,8 +69,8 @@ export const userSlice = createSlice({
       .addCase(
         actionAsync.fulfilled,
         (user, action: PayloadAction<UserFulfilled>) => {
-          localStorage.setItem("BTUser", JSON.stringify(action.payload));
           userSlice.actions.login(action.payload);
+          localStorage.setItem("BTUser", JSON.stringify(action.payload));
           return {
             ...user,
             username: action.payload.username,

@@ -63,7 +63,10 @@ export const Tickets = () => {
       />
       <Categories children={categories} className="gap-28" />
       {tickets?.map((ticket, i) => (
-        <div className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50">
+        <div
+          key={i}
+          className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"
+        >
           <p>{ticket.title}</p>
           <p>{ticket.submitter}</p>
           <p>{ticket.priority}</p>
