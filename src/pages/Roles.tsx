@@ -15,7 +15,7 @@ export const Roles = () => {
   }, [users]);
 
   return (
-    <div className="flex m-1">
+    <div className="md:flex m-1">
       <AssignRole user={user} />
       <div>
         <h1 className="font-bold">All users</h1>

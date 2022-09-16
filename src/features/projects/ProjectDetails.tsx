@@ -43,7 +43,7 @@ export const ProjectDetails = () => {
         </div>
         <AssignUsersToProjects project={project} />
       </div>
-      <div className="flex p-1 gap-9 rounded">
+      <div className="md:flex p-1 gap-9 rounded">
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>

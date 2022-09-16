@@ -48,7 +48,9 @@ export const Projects = () => {
               className="flex p-1 justify-between shadow-sm hover:bg-slate-50"
             >
               <p className="w-20">{project.name}</p>
-              <p className="w-20 whitespace-nowrap">{project.description}</p>
+              <p className="w-20  md:whitespace-nowrap">
+                {project.description}
+              </p>
               <div className="flex flex-col">
                 <Link
                   className="hover:underline w-20"
