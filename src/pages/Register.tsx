@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
-import { Fragment, useState } from "react";
 import { actionAsync } from "../features/user/userSlice";
 import { DemoUserSelection } from "../features/user/DemoUserSelection";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Fragment, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 //Yup schema for registration
@@ -79,7 +79,6 @@ export const Register = () => {
                   />
                 </Fragment>
               ))}
-
               {user?.error && <div className="text-red-600">{user.error}</div>}
               <Button
                 disabled={isSubmitting}
