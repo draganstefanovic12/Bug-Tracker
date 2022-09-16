@@ -24,7 +24,7 @@ export const ProjectDetails = () => {
   };
 
   return (
-    <section className="m-1 relative p-1 flex flex-col justify-around">
+    <section className="m-1 relative p-1 flex flex-col justify-between">
       <div className="flex w-full">
         <div className="w-2/4">
           <h1 className="text-lg top-1">Project details</h1>
@@ -49,7 +49,7 @@ export const ProjectDetails = () => {
       </div>
       {user === "admin" && (
         <Button
-          className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute top-4 right-5"
+          className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
           onClick={handleDelete}
         >
           Delete

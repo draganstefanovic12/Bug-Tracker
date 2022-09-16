@@ -15,9 +15,9 @@ export const Roles = () => {
   }, [users]);
 
   return (
-    <div className="md:flex m-1">
+    <div className="md:flex bg-[#fff] m-1">
       <AssignRole user={user} />
-      <div>
+      <div className="bg-[#fff] p-3 rounded">
         <h1 className="font-bold">All users</h1>
         <Categories
           children={["Name", "Email", "Role"]}

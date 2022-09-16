@@ -34,11 +34,11 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 w-2/4">
+    <div className="flex flex-col gap-5 w-2/4 absolute right-2 top-1 border bg-[#fff] shadow rounded">
       <h1>Assign this project to one or more personnel.</h1>
       <select
         multiple
-        className="w-3/6 h-40 overflow-auto"
+        className="h-60 overflow-auto border"
         onChange={handleUser}
       >
         {users?.map((user: User, i) => (
@@ -48,7 +48,7 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
         ))}
       </select>
       <Button
-        className="flex items-center btn-form text-center flex-col"
+        className="flex items-center btn-form text-center mb-3 ml-2 flex-col"
         onClick={handleSubmit}
       >
         Submit

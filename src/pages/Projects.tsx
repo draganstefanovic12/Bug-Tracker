@@ -30,10 +30,10 @@ export const Projects = () => {
   return (
     <section className="flex p-1">
       <div className="flex flex-col w-full md:block">
-        <ul className="flex flex-col gap-2 w-full p-1 bg-[#fff] rounded text-sm shadow relative">
+        <ul className="flex flex-col gap-2 w-full p-1 bg-[#fff] rounded text-sm shadow">
           <h1 className="font-bold text-lg">All projects</h1>
           <Button
-            className="btn-form w-36 h-6 absolute right-1"
+            className="btn-form w-36 h-6 absolute bottom-2 right-1"
             onClick={handleCreate}
           >
             Create new

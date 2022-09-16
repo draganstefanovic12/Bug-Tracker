@@ -33,11 +33,11 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 pl-5 w-2/4">
+    <div className="flex flex-col gap-5 pl-5 w-2/4 bg-[#fff]">
       <h1 className="font-bold">Assign a role to one or multiple users</h1>
       <select
         multiple
-        className="w-3/6 h-52 overflow-auto"
+        className="w-3/6 h-52 border overflow-auto"
         onChange={handleUser}
       >
         {user?.map((user: User, i) => (
@@ -48,7 +48,7 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
       </select>
       <select
         disabled={userRole !== "admin" && true}
-        className="w-3/6"
+        className="w-3/6 border"
         onChange={handleRole}
       >
         <option className="text-center">
