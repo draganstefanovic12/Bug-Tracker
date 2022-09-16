@@ -12,10 +12,8 @@ export const TicketInfo = ({ ticket }: InfoProps) => {
       ticket: ticket?.title,
       proj: ticket?.project,
     };
-    await axios.post(
-      "https://drg-bug-tracker.herokuapp.com/projects/close",
-      options
-    );
+    const link = "https://drg-bug-tracker.herokuapp.com";
+    await axios.post(`${link}/projects/close`, options);
   };
 
   return (

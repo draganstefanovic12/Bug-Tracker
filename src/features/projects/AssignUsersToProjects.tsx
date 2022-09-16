@@ -13,9 +13,8 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [user, setUser] = useState<string | string[]>();
 
-  const usrs: User[] | undefined = useFetch(
-    "https://drg-bug-tracker.herokuapp.com/users/all"
-  );
+  const link = "https://drg-bug-tracker.herokuapp.com";
+  const usrs: User[] | undefined = useFetch(`${link}/users/all`);
 
   useEffect(() => {
     setUsers(usrs);
@@ -30,10 +29,7 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
       user: user,
       proj: project?.name,
     };
-    await axios.post(
-      "https://drg-bug-tracker.herokuapp.com/users/assignProject",
-      options
-    );
+    await axios.post(`${link}/users/assignProject`, options);
     setSubmitted(true);
   };
 

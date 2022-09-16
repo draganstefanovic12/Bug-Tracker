@@ -10,24 +10,15 @@ import { Roles } from "./pages/Roles";
 import { login } from "./features/user/userSlice";
 import { Login } from "./pages/Login";
 import { Ticket } from "./features/ticket/Ticket";
-import { Project } from "./types/types";
 import { Tickets } from "./pages/Tickets";
-import { useFetch } from "./hooks/useFetch";
 import { Projects } from "./pages/Projects";
 import { Register } from "./pages/Register";
 import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
-import { addProject } from "./features/projects/projectSlice";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
-import axios, { AxiosResponse } from "axios";
-
-type Data = {
-  data: {
-    projects: Project[];
-  };
-};
+import axios from "axios";
 
 //Checking for existing user on page load
 //If user exists in localStorage, I fetch the users info to check for new notifications

@@ -18,9 +18,8 @@ export const Projects = () => {
 
   useEffect(() => {
     const handleProject = async () => {
-      const proj = await axios.get(
-        "https://drg-bug-tracker.herokuapp.com/projects/all"
-      );
+      const link = "https://drg-bug-tracker.herokuapp.com";
+      const proj = await axios.get(`${link}/projects/all`);
       proj && dispatch(addProject(proj.data.projects));
     };
     handleProject();
@@ -37,7 +36,7 @@ export const Projects = () => {
             className="btn-form w-36 h-6 absolute right-1"
             onClick={handleCreate}
           >
-            Create new project
+            Create new
           </Button>
           <Categories
             children={categories}

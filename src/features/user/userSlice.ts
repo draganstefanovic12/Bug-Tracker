@@ -2,6 +2,8 @@ import axios from "axios";
 import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const link = "https://drg-bug-tracker.herokuapp.com";
+
 type UserState = UserFulfilled | null;
 
 type ThunkUser = {
@@ -27,18 +29,15 @@ export const actionAsync = createAsyncThunk(
   "user/action",
   async (user: ThunkUser) => {
     try {
-      const response = await axios(
-        `https://drg-bug-tracker.herokuapp.com/users/${user.api}`,
-        {
-          method: "POST",
-          data: {
-            username: user.username,
-            password: user.password,
-            email: user.email,
-            role: user.role,
-          },
-        }
-      );
+      const response = await axios(`${link}/users/${user.api}`, {
+        method: "POST",
+        data: {
+          username: user.username,
+          password: user.password,
+          email: user.email,
+          role: user.role,
+        },
+      });
       return response.data;
     } catch (err: any) {
       const response = err.response.data.message;

@@ -17,13 +17,11 @@ export const projectAsync = createAsyncThunk(
   "projects/new",
   async (project: Project) => {
     try {
-      const response = await axios(
-        "https://drg-bug-tracker.herokuapp.com/projects/new",
-        {
-          method: "POST",
-          data: project,
-        }
-      );
+      const link = "https://drg-bug-tracker.herokuapp.com";
+      const response = await axios(`${link}/projects/new`, {
+        method: "POST",
+        data: project,
+      });
       return response.data;
     } catch (err: any) {
       const response = err.response.data.message;

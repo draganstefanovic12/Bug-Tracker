@@ -1,32 +1,39 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
+import { Fragment, useState } from "react";
 import { actionAsync } from "../features/user/userSlice";
+import { DemoUserSelection } from "../features/user/DemoUserSelection";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
 import * as Yup from "yup";
-import { DemoUserSelection } from "../features/user/DemoUserSelection";
-import { useState } from "react";
+
+//Yup schema for registration
+const signUpSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, "Username is too short.")
+    .max(10, "Username is too long.")
+    .required("Username is required."),
+  email: Yup.string().email("Invalid email.").required("Email is required."),
+  password: Yup.string()
+    .required("No password provided.")
+    .min(8, "Password is too short - should be 8 chars minimum"),
+  passwordConfirmation: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords must match."
+  ),
+});
+
+const registerFields = [
+  { type: "username", placeholder: "Username", name: "username" },
+  { type: "email", placeholder: "Email", name: "email" },
+  { type: "password", placeholder: "Password", name: "password" },
+  { type: "password", placeholder: "Username", name: "confirmationPassword" },
+];
 
 export const Register = () => {
   const user = useAppSelector((user) => user.user);
   const [demoUser, setDemoUser] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-
-  //Yup schema for registration
-  const signUpSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(3, "Username is too short.")
-      .max(10, "Username is too long.")
-      .required("Username is required."),
-    email: Yup.string().email("Invalid email.").required("Email is required."),
-    password: Yup.string()
-      .required("No password provided.")
-      .min(8, "Password is too short - should be 8 chars minimum"),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match."
-    ),
-  });
 
   const handleDemoUser = () => {
     setDemoUser(!demoUser);
@@ -57,45 +64,22 @@ export const Register = () => {
           !demoUser ? (
             <Form className="flex bg-[#fff] flex-col justify-center items-center text-center p-3 gap-3 h-3/5 w-80 rounded shadow appearance-none border">
               <h1 className="text-lg">Register</h1>
-              <Field
-                type="username"
-                name="username"
-                placeholder="Username"
-                className="input-field"
-              />
-              <ErrorMessage
-                name="username"
-                component="div"
-                className="text-xs text-red-600"
-              />
-              <Field
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="input-field"
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="text-xs text-red-600"
-              />
-              <Field
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="input-field"
-              />
-              <Field
-                type="password"
-                name="passwordConfirmation"
-                placeholder="Confirm Password"
-                className="input-field"
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="text-xs text-red-600"
-              />
+              {registerFields.map((field, i) => (
+                <Fragment key={i}>
+                  <Field
+                    type={field.type}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    className="input-field"
+                  />
+                  <ErrorMessage
+                    name={field.name}
+                    component="div"
+                    className="text-xs text-red-600"
+                  />
+                </Fragment>
+              ))}
+
               {user?.error && <div className="text-red-600">{user.error}</div>}
               <Button
                 disabled={isSubmitting}

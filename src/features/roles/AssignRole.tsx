@@ -20,10 +20,8 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
       name: assignUser,
       role: role,
     };
-    await axios.post(
-      "https://drg-bug-tracker.herokuapp.com/users/role",
-      options
-    );
+    const link = "https://drg-bug-tracker.herokuapp.com";
+    await axios.post(`${link}/users/role`, options);
   };
 
   const handleUser = (e: React.ChangeEvent<HTMLSelectElement>) => {

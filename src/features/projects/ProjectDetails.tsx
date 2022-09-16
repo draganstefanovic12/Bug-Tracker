@@ -18,10 +18,8 @@ export const ProjectDetails = () => {
 
   const handleDelete = async () => {
     const options = { _id: project?._id };
-    await axios.post(
-      "https://drg-bug-tracker.herokuapp.com/projects/remove",
-      options
-    );
+    const link = "https://drg-bug-tracker.herokuapp.com";
+    await axios.post(`${link}/projects/remove`, options);
     navigate("/projects");
   };
 

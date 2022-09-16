@@ -3,6 +3,8 @@ import { Ticket } from "../../types/types";
 import { RootState } from "../store/store";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const link = "https://drg-bug-tracker.herokuapp.com";
+
 export type TicketState = {
   tickets: Ticket[];
   error?: string | undefined;
@@ -17,16 +19,13 @@ export const ticketAsync = createAsyncThunk(
   "tickets/new",
   async (ticket: Ticket) => {
     try {
-      const response = await axios(
-        "https://drg-bug-tracker.herokuapp.com/projects/ticket",
-        {
-          method: "POST",
-          data: {
-            ticket: ticket,
-            proj: ticket.project,
-          },
-        }
-      );
+      const response = await axios(`${link}/projects/ticket`, {
+        method: "POST",
+        data: {
+          ticket: ticket,
+          proj: ticket.project,
+        },
+      });
       return response.data;
     } catch (err: any) {
       const response = err.response.data.message;

@@ -51,10 +51,10 @@ export const Tickets = () => {
     <div className="bg-[#fff] m-1 rounded p-1 gap-2 flex flex-col relative">
       <h1 className="text-lg font-bold text-[#5c6070]">All tickets</h1>
       <Button
-        className="btn-form w-36 h-6 absolute top-9 right-1"
+        className="btn-form text-sm w-32 h-6 absolute top-9 right-1"
         onClick={handleCreate}
       >
-        Create new project
+        Create new
       </Button>
       <Input
         className="bg-[#ededed] absolute px-1 top-1.5 right-1 shadow-inner text-sm"

@@ -2,9 +2,8 @@ import { User } from "../../types/types";
 import { useFetch } from "../../hooks/useFetch";
 
 export const UserSelect = () => {
-  const data: User[] = useFetch(
-    "https://drg-bug-tracker.herokuapp.com/users/all"
-  )!;
+  const link = "https://drg-bug-tracker.herokuapp.com";
+  const data: User[] = useFetch(`${link}/users/all`)!;
 
   const users =
     data &&
