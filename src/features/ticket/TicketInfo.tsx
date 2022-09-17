@@ -21,10 +21,8 @@ export const TicketInfo = ({ ticket }: InfoProps) => {
       <h1 className="font-bold pt-1">Details for ticket: {ticket?.title}</h1>
       <div className="bg-[#fff] text-sm flex p-2 border rounded shadow">
         <div className="gap-4 flex w-2/4 flex-col">
-          <p className="font-bold h-auto">Ticket Description</p>
-          <p className="border-b-2 h-auto text-gray-700">
-            {ticket?.description}
-          </p>
+          <p className="font-bold h-3">Ticket Description</p>
+          <p className="border-b-2 h-14 text-gray-700">{ticket?.description}</p>
           <p className="font-bold h-auto">Assigned Developer</p>
           <p className="border-b-2 h-auto text-gray-700">{ticket?.developer}</p>
           <p className="font-bold h-auto">Priority</p>
@@ -32,9 +30,9 @@ export const TicketInfo = ({ ticket }: InfoProps) => {
           <p className="font-bold h-auto">Ticket submitted by</p>
           <p>{ticket?.submitter}</p>
         </div>
-        <div className="gap-4 flex w-2/4 flex-col">
-          <p className="font-bold h-auto">Ticket type</p>
-          <p className="border-b-2 h-auto text-gray-700">{ticket?.type}</p>
+        <div className="gap-4 flex w-2/4  flex-col">
+          <p className="font-bold h-3">Ticket type</p>
+          <p className="border-b-2 h-14 text-gray-700">{ticket?.type}</p>
           <p className="font-bold h-auto">Project</p>
           <p className="border-b-2 h-auto text-gray-700">{ticket?.project}</p>
           <p className="font-bold h-auto">Created</p>
@@ -53,7 +51,7 @@ export const TicketInfo = ({ ticket }: InfoProps) => {
           Set ticket as closed.
         </Button>
       ) : (
-        <h1>This ticket is closed.</h1>
+        <h1 className="font-bold text-black">This ticket is closed.</h1>
       )}
     </div>
   );

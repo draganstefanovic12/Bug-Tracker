@@ -48,42 +48,44 @@ export const Tickets = () => {
   };
 
   return (
-    <div className="bg-[#fff] m-1 rounded p-1 gap-2 flex flex-col relative">
-      <h1 className="text-lg font-bold text-[#5c6070]">All tickets</h1>
-      <Button
-        className="btn-form text-sm w-32 h-6 absolute bottom-2 right-1"
-        onClick={handleCreate}
-      >
-        Create new
-      </Button>
-      <Input
-        className="bg-[#ededed] absolute px-1 top-1.5 right-1 shadow-inner text-sm"
-        placeholder="Search"
-        onChange={handleSearch}
-      />
-      <Categories children={categories} className="gap-28" />
-      {tickets?.map((ticket, i) => (
-        <div
-          key={i}
-          className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"
+    <section className="relative">
+      <div className="bg-[#fff] m-1 rounded p-1 gap-2 flex flex-col">
+        <h1 className="text-lg font-bold text-[#5c6070] pl-1">All tickets</h1>
+        <Button
+          className="btn-form w-36 h-6 absolute bottom-2 right-1 flex text-sm text-center justify-center"
+          onClick={handleCreate}
         >
-          <p>{ticket.title}</p>
-          <p>{ticket.submitter}</p>
-          <p>{ticket.priority}</p>
-          <p>{ticket.type}</p>
-          <p>{ticket.created.slice(0, 10)}</p>
-          <Link
-            className="hover:underline"
+          Create new
+        </Button>
+        <Input
+          className="bg-[#ededed] absolute px-1 top-1.5 right-1 shadow-inner text-sm"
+          placeholder="Search"
+          onChange={handleSearch}
+        />
+        <Categories children={categories} className="gap-28" />
+        {tickets?.map((ticket, i) => (
+          <div
             key={i}
-            to={`/tickets/${ticket.project}/${ticket.title}`}
+            className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"
           >
-            See more
-          </Link>
-        </div>
-      ))}
-      {isCreating && (
-        <CreateTicket setIsCreating={setIsCreating} setTickets={setTickets} />
-      )}
-    </div>
+            <p>{ticket.title}</p>
+            <p>{ticket.submitter}</p>
+            <p>{ticket.priority}</p>
+            <p>{ticket.type}</p>
+            <p>{ticket.created.slice(0, 10)}</p>
+            <Link
+              className="hover:underline"
+              key={i}
+              to={`/tickets/${ticket.project}/${ticket.title}`}
+            >
+              See more
+            </Link>
+          </div>
+        ))}
+        {isCreating && (
+          <CreateTicket setIsCreating={setIsCreating} setTickets={setTickets} />
+        )}
+      </div>
+    </section>
   );
 };

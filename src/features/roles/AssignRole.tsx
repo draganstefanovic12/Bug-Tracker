@@ -33,8 +33,8 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 pl-5 w-2/4 bg-[#fff]">
-      <h1 className="font-bold">Assign a role to one or multiple users</h1>
+    <div className="flex flex-col gap-5 mt-4 pl-5 w-2/4">
+      <h1 className="font-bold ml-1">Assign a role to one or multiple users</h1>
       <select
         multiple
         className="w-3/6 h-52 border overflow-auto"

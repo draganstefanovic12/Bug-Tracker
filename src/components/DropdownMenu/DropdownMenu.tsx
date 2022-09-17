@@ -23,7 +23,7 @@ export const DropdownMenu = () => {
     <div
       ref={divRef}
       onClick={handleToggle}
-      className="flex flex-col bg-[#fff] hover:cursor-pointer child:h-3.5 pr-10 w-16"
+      className="flex flex-col bg-[#fff] hover:bg-slate-50 hover:cursor-pointer child:h-3.5 pr-10 w-16"
     >
       <p className="font-bold">{user.username}</p>
       <p>{user.role}</p>

@@ -15,10 +15,10 @@ export const Roles = () => {
   }, [users]);
 
   return (
-    <div className="md:flex bg-[#fff] m-1">
+    <div className="md:flex m-1">
       <AssignRole user={user} />
-      <div className="bg-[#fff] p-3 rounded">
-        <h1 className="font-bold">All users</h1>
+      <div className="bg-[#fff] border m-2 shadow p-2 rounded">
+        <h1 className="font-bold pl-1">All users</h1>
         <Categories
           children={["Name", "Email", "Role"]}
           className="gap-40 child:w-20 p-1"
@@ -26,7 +26,7 @@ export const Roles = () => {
         {user?.map((user: User, i) => (
           <div
             key={i}
-            className="flex child:w-20 gap-40 child:text-sm bg-[#fff] relative p-1 hover:bg-slate-100"
+            className="flex child:w-20 gap-40 child:text-sm bg-[#fff] relative p-1 border-b-2 hover:bg-slate-100"
           >
             <p>{user.username}</p>
             <p>{user.email}</p>

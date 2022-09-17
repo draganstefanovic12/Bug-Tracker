@@ -25,30 +25,26 @@ export const Projects = () => {
     handleProject();
   }, [dispatch]);
 
-  const categories = ["Name", "Description", "Options"];
-
   return (
     <section className="flex p-1">
       <div className="flex flex-col w-full md:block">
-        <ul className="flex flex-col gap-2 w-full p-1 bg-[#fff] rounded text-sm shadow">
-          <h1 className="font-bold text-lg">All projects</h1>
+        <ul className="flex flex-col w-full p-1 bg-[#fff] rounded text-sm shadow">
+          <h1 className="font-bold text-lg pl-1">All projects</h1>
           <Button
             className="btn-form w-36 h-6 absolute bottom-2 right-1"
             onClick={handleCreate}
           >
             Create new
           </Button>
-          <Categories
-            children={categories}
-            className="justify-between child:w-20"
-          />
+          <div className="flex text-sm border-b-2 pl-1 border-black font-bold">
+            <p className="w-1/4">Name</p>
+            <p className="w-3/4 mr-20">Description</p>
+            <p className="ml-5 absolute right-11">Options</p>
+          </div>
           {projects?.map((project, i: number) => (
-            <li
-              key={i}
-              className="flex p-1 justify-between shadow-sm hover:bg-slate-50"
-            >
-              <p className="w-20">{project.name}</p>
-              <p className="w-20  md:whitespace-nowrap">
+            <li key={i} className="flex p-1 shadow-sm hover:bg-slate-50">
+              <p className="w-1/4 text-black">{project.name}</p>
+              <p className="w-3/4 text-zinc-600 md:whitespace-nowrap">
                 {project.description}
               </p>
               <div className="flex flex-col">

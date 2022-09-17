@@ -33,7 +33,7 @@ export const ProjectTickets = ({ tickets }: TicketsProps) => {
   return (
     <div className="w-full">
       <h1 className="font-bold">Current tickets: </h1>
-      <ul className="bg-[#fff] border-l-2 relative pl-1 rounded shadow border h-full p-2">
+      <ul className="bg-[#fff] border-l-2 relative pl-1 rounded shadow border h-80 p-2">
         <Input
           className="bg-[#ededed] absolute px-1 top-1 shadow-inner right-2 text-sm"
           placeholder="Search"
