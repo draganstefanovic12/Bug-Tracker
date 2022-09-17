@@ -1,25 +1,39 @@
 import close from "../../assets/images/close.svg";
 import { Button } from "../../components/Button/Button";
+import { Project } from "../../types/types";
 import { UserSelect } from "../user/UserSelect";
-import { projectAsync } from "./projectSlice";
-import { useAppDispatch } from "../../hooks/useRedux";
 import { Field, Form, Formik } from "formik";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "../axios/interceptors";
 
 type CreateProps = {
   setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const CreateProject = ({ setIsCreating }: CreateProps) => {
-  const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
+
+  const handleAddProject = async (project: Project) => {
+    const link = "https://drg-bug-tracker.herokuapp.com";
+    await axios(`${link}/projects/new`, {
+      method: "POST",
+      data: project,
+    });
+  };
+
+  const createMutation = useMutation(handleAddProject, {
+    onSuccess: () => {
+      setIsCreating(false);
+      queryClient.invalidateQueries("projects");
+    },
+  });
 
   return (
     <div>
       <Formik
         initialValues={{ name: "", assigned: [], link: "", description: "" }}
-        onSubmit={(values, { setSubmitting }) => {
-          dispatch(projectAsync(values));
-          setIsCreating(false);
-          setSubmitting(true);
+        onSubmit={(values) => {
+          createMutation.mutate(values);
         }}
       >
         {({ isSubmitting }) => (

@@ -10,13 +10,16 @@ import axios from "../axios/interceptors";
 export const ProjectDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const user = useAppSelector((user) => user.user?.role);
+  const user = useAppSelector((user) => user.user);
   const projects = useAppSelector((projects) => projects.projects.projects);
   const project = projects.find(
     (project: Project) => project.name === params.project
   );
 
   const handleDelete = async () => {
+    if (user?.username?.slice(0, 4) === "demo") {
+      return;
+    }
     const options = { _id: project?._id };
     const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/projects/remove`, options);
@@ -47,7 +50,7 @@ export const ProjectDetails = () => {
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>
-      {user === "admin" && (
+      {user?.role === "admin" && (
         <Button
           className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
           onClick={handleDelete}

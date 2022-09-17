@@ -1,23 +1,38 @@
 import { Button } from "../../components/Button/Button";
 import { UserSelect } from "../user/UserSelect";
-import { ticketAsync } from "./ticketSlice";
+import { useAppSelector } from "../../hooks/useRedux";
 import { Project, Ticket } from "../../types/types";
 import { Field, Form, Formik } from "formik";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useMutation, useQueryClient } from "react-query";
 import close from "../../assets/images/close.svg";
+import axios from "../axios/interceptors";
 
 type CreateTicketProps = {
   setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
-  setTickets: React.Dispatch<React.SetStateAction<Ticket[] | undefined>>;
 };
 
-export const CreateTicket = ({
-  setIsCreating,
-  setTickets,
-}: CreateTicketProps) => {
-  const dispatch = useAppDispatch();
+export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
+  const queryClient = useQueryClient();
   const user = useAppSelector((user) => user.user?.username);
   const projects = useAppSelector((projects) => projects.projects.projects);
+
+  const handleAddTicket = async (ticket: Ticket) => {
+    const link = "https://drg-bug-tracker.herokuapp.com";
+    await axios(`${link}/projects/ticket`, {
+      method: "POST",
+      data: {
+        ticket: ticket,
+        proj: ticket.project,
+      },
+    });
+  };
+
+  const createMutation = useMutation(handleAddTicket, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("projects");
+      setIsCreating(false);
+    },
+  });
 
   return (
     <div>
@@ -31,7 +46,7 @@ export const CreateTicket = ({
           project: projects[0].name,
         }}
         onSubmit={(values, { setSubmitting }) => {
-          const comment = {
+          const ticket = {
             ...values,
             status: "Open",
             developer: user,
@@ -39,13 +54,7 @@ export const CreateTicket = ({
             created: JSON.stringify(new Date()),
             comments: [],
           };
-          setIsCreating(false);
-          setSubmitting(true);
-          setTickets((currTicks: Ticket[] | undefined) => [
-            ...currTicks!,
-            comment,
-          ]);
-          dispatch(ticketAsync(comment));
+          createMutation.mutate(ticket);
         }}
       >
         {({ isSubmitting }) => (

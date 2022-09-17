@@ -10,37 +10,38 @@ import { useEffect, useState } from "react";
 const categories = ["Subject", "Submitter", "Priority", "Type", "Created"];
 
 export const Tickets = () => {
-  const [isCreating, setIsCreating] = useState<boolean>(false);
   const projects = useAppSelector((projects) => projects.projects.projects);
-  const [initialTickets, setInitialTickets] = useState<Ticket[]>();
-  const [tickets, setTickets] = useState<Ticket[]>();
-
-  //map through project tickets, set all tickets to tickets and initial tickets
-  //everytime i search, i filter initialtickets and set filter to that
-  //tickets dont get mutated so the search works
+  const [isCreating, setIsCreating] = useState<boolean>(false);
+  const [proj, setProj] = useState(projects);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
-      setTickets(initialTickets);
+      setProj(projects);
       return;
     }
-    const filter = initialTickets?.filter(
-      (ticket) =>
-        ticket.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        ticket
-          .submitter!.toLowerCase()
-          .includes(e.target.value.toLowerCase()) ||
-        ticket.status.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        ticket.developer!.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setTickets(filter);
+    const filter = projects.map((project: Project) => {
+      return {
+        ...project,
+        tickets: project.tickets!.filter(
+          (ticket: Ticket) =>
+            ticket.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+            ticket
+              .submitter!.toLowerCase()
+              .includes(e.target.value.toLowerCase()) ||
+            ticket.status
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase()) ||
+            ticket
+              .developer!.toLowerCase()
+              .includes(e.target.value.toLowerCase())
+        ),
+      };
+    }) as Project[];
+    setProj(filter);
   };
 
   useEffect(() => {
-    const arr = [] as Ticket[];
-    projects.map((project: Project) => arr.push(...project.tickets!));
-    setInitialTickets(arr);
-    setTickets(arr);
+    setProj(projects);
   }, [projects]);
 
   const handleCreate = () => {
@@ -63,28 +64,28 @@ export const Tickets = () => {
           onChange={handleSearch}
         />
         <Categories children={categories} className="gap-28" />
-        {tickets?.map((ticket, i) => (
-          <div
-            key={i}
-            className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"
-          >
-            <p>{ticket.title}</p>
-            <p>{ticket.submitter}</p>
-            <p>{ticket.priority}</p>
-            <p>{ticket.type}</p>
-            <p>{ticket.created.slice(0, 10)}</p>
-            <Link
-              className="hover:underline"
+        {proj?.map((project: Project, i) =>
+          project.tickets!.map((ticket: Ticket) => (
+            <div
               key={i}
-              to={`/tickets/${ticket.project}/${ticket.title}`}
+              className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"
             >
-              See more
-            </Link>
-          </div>
-        ))}
-        {isCreating && (
-          <CreateTicket setIsCreating={setIsCreating} setTickets={setTickets} />
+              <p>{ticket.title}</p>
+              <p>{ticket.submitter}</p>
+              <p>{ticket.priority}</p>
+              <p>{ticket.type}</p>
+              <p>{ticket.created.slice(0, 10)}</p>
+              <Link
+                className="hover:underline"
+                key={i}
+                to={`/tickets/${ticket.project}/${ticket.title}`}
+              >
+                See more
+              </Link>
+            </div>
+          ))
         )}
+        {isCreating && <CreateTicket setIsCreating={setIsCreating} />}
       </div>
     </section>
   );
