@@ -6,10 +6,12 @@ import AssignedPersonnel from "../../components/AssignedPersonnel";
 import { AssignUsersToProjects } from "./AssignUsersToProjects";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";
+import { useUser } from "../../context/UserContext";
 
 export const ProjectDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const { user } = useUser();
   const { projects } = useDatabase();
   const project = projects.find(
     (project: Project) => project.name === params.project
@@ -46,12 +48,14 @@ export const ProjectDetails = () => {
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>
-      <Button
-        className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
-        onClick={handleDelete}
-      >
-        Delete
-      </Button>
+      {user.role === "admin" && user.username.slice(0, 4) !== "demo" && (
+        <Button
+          className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
+      )}
     </section>
   );
 };

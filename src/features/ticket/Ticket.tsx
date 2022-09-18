@@ -23,7 +23,7 @@ export const Ticket = () => {
   return (
     <div className="p-2 w-full gap-3 flex">
       <TicketInfo ticket={ticket} />
-      <TicketComments ticket={ticket} setTickets={setTicket} />
+      <TicketComments ticket={ticket} />
     </div>
   );
 };

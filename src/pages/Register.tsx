@@ -27,7 +27,11 @@ const registerFields = [
   { type: "username", placeholder: "Username", name: "username" },
   { type: "email", placeholder: "Email", name: "email" },
   { type: "password", placeholder: "Password", name: "password" },
-  { type: "password", placeholder: "Username", name: "confirmationPassword" },
+  {
+    type: "password",
+    placeholder: "Confirm Password",
+    name: "confirmationPassword",
+  },
 ];
 
 export const Register = () => {
@@ -47,10 +51,8 @@ export const Register = () => {
       <Formik
         initialValues={{ username: "", password: "", email: "" }}
         validationSchema={signUpSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(true);
+        onSubmit={(values) => {
           handleRegister(values);
-          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) =>

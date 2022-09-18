@@ -9,7 +9,7 @@ type Values = {
 export const useLogin = () => {
   const { dispatch } = useUser();
   const handleLogin = async (values: Values) => {
-    const link = "http://localhost:5000";
+    const link = "https://drg-bug-tracker.herokuapp.com";
     const data = await axios.post(`${link}/users/login`, {
       username: values.username,
       password: values.password,

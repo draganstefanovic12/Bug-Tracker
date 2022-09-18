@@ -43,6 +43,7 @@ export const AssignRole = () => {
       <h1 className="font-bold ml-1">Assign a role to one or multiple users</h1>
       <select
         multiple
+        disabled={user.username.slice(0, 4) === "demo" && true}
         className="w-3/6 h-52 border overflow-auto"
         onChange={handleUser}
       >

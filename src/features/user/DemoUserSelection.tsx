@@ -6,6 +6,12 @@ type DemoProps = {
   handleDemoUser: () => void;
 };
 
+const roles = [
+  { name: "User", content: "before:content-user" },
+  { name: "Developer", content: "before:content-developer" },
+  { name: "Admin", content: "before:content-admin" },
+];
+
 export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
   const [role, setRole] = useState<string>("");
   const { handleRegister } = useRegister();
@@ -14,7 +20,7 @@ export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
     handleRegister({
       username: `demo_user${Math.floor(Math.random() * 10000)}`,
       password: Math.floor(Math.random() * 10000).toString(),
-      email: "demo@demouser.com",
+      email: `${Math.floor(Math.random() * 10000)}demo@demouser.com`,
       role: role,
     });
   };
@@ -23,24 +29,14 @@ export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
     <div className="items-center flex border shadow p-5 flex-col">
       <h1 className="mb-5">Select a role you would like to preview: </h1>
       <div className="flex gap-10">
-        <p
-          className="before:content-user hover:cursor-pointer hover:bg-slate-100 w-32 flex flex-col text-center"
-          onClick={() => setRole("user")}
-        >
-          User
-        </p>
-        <p
-          className="before:content-developer hover:cursor-pointer hover:bg-slate-100 w-32 before:block flex flex-col text-center"
-          onClick={() => setRole("developer")}
-        >
-          Developer
-        </p>
-        <p
-          className="before:content-admin hover:cursor-pointer hover:bg-slate-100 before:block w-32 flex flex-col text-center"
-          onClick={() => setRole("admin")}
-        >
-          Admin
-        </p>
+        {roles.map((role) => (
+          <p
+            onClick={() => setRole(role.name.toLowerCase())}
+            className={`${role.content} hover:cursor-pointer hover:bg-slate-100 w-32 flex flex-col text-center`}
+          >
+            {role.name}
+          </p>
+        ))}
       </div>
       <Button className="btn-form" onClick={handleRegisterDemoUser}>
         Submit
