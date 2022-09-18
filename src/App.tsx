@@ -10,16 +10,16 @@ import { Roles } from "./pages/Roles";
 import { Login } from "./pages/Login";
 import { Ticket } from "./features/ticket/Ticket";
 import { Tickets } from "./pages/Tickets";
+import { useUser } from "./context/UserContext";
 import { Projects } from "./pages/Projects";
 import { Register } from "./pages/Register";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+import { useDatabase } from "./context/DatabaseContext";
 import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import axios from "axios";
-import { useUser } from "./context/UserContext";
-import { useDatabase } from "./context/DatabaseContext";
 
 //Checking for existing user on page load
 //If user exists in localStorage, I fetch the users info to check for new notifications

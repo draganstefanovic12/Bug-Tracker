@@ -1,17 +1,12 @@
 import { User } from "../../types/types";
-import { useFetch } from "../../hooks/useFetch";
+import { useDatabase } from "../../context/DatabaseContext";
 
 export const UserSelect = () => {
-  const link = "https://drg-bug-tracker.herokuapp.com";
-  const data: User[] = useFetch(`${link}/users/all`)!;
+  const { users } = useDatabase();
 
-  const users =
-    data &&
-    data.map((user: User, i: number) => (
-      <option value={JSON.stringify(user)} key={i}>
-        {user.username}
-      </option>
-    ));
-
-  return <>{users}</>;
+  return users.map((user: User, i: number) => (
+    <option value={JSON.stringify(user)} key={i}>
+      {user.username}
+    </option>
+  ));
 };
