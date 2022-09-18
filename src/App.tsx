@@ -21,10 +21,6 @@ import { ProjectDetails } from "./features/projects/ProjectDetails";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes";
 import axios from "axios";
 
-//Checking for existing user on page load
-//If user exists in localStorage, I fetch the users info to check for new notifications
-//Fetching all projects on page load
-
 const useUserData = () => {
   const link = "https://drg-bug-tracker.herokuapp.com";
   return useQuery(["users"], async () => {
@@ -32,15 +28,25 @@ const useUserData = () => {
     return data.data;
   });
 };
+const link = "https://drg-bug-tracker.herokuapp.com";
+
+const useQueryData = () => {
+  return useQuery(["projects"], async () => {
+    const data = await axios.get(`${link}/projects/all`);
+    return data.data;
+  });
+};
 
 const App = () => {
   const { data } = useUserData();
   const { user } = useUser();
+  const { data: projects } = useQueryData();
   const { dispatch } = useDatabase();
 
   useEffect(() => {
     dispatch({ type: "ADD_USR", payload: data });
-  }, [data, dispatch]);
+    projects && dispatch({ type: "ADD_PROJ", payload: projects.projects });
+  }, [data, dispatch, projects]);
 
   return (
     <Router>

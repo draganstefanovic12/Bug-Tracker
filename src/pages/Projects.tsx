@@ -1,36 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { Project } from "../types/types";
-import { useQuery } from "react-query";
+import { useState } from "react";
 import { useDatabase } from "../context/DatabaseContext";
 import { CreateProject } from "../features/projects/CreateProject";
-import { useEffect, useState } from "react";
-import axios from "../features/axios/interceptors";
-
-const link = "https://drg-bug-tracker.herokuapp.com";
-const useQueryData = () => {
-  return useQuery(["projects"], async () => {
-    const data = await axios.get(`${link}/projects/all`);
-    return data.data;
-  });
-};
 
 export const Projects = () => {
-  const { isLoading, data } = useQueryData();
   const [isCreating, setIsCreating] = useState<boolean>(false);
-  const { dispatch } = useDatabase();
+  const { projects } = useDatabase();
 
   const handleCreate = () => {
     setIsCreating(true);
   };
-
-  useEffect(() => {
-    data && dispatch({ type: "ADD_PROJ", payload: data.projects });
-  }, [data, dispatch]);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <section className="flex p-1">
@@ -48,8 +29,8 @@ export const Projects = () => {
             <p className="w-3/4 mr-20">Description</p>
             <p className="ml-5 absolute right-11">Options</p>
           </div>
-          {data &&
-            data.projects.map((project: Project, i: number) => (
+          {projects &&
+            projects.map((project: Project, i: number) => (
               <li key={i} className="flex p-1 shadow-sm hover:bg-slate-50">
                 <p className="w-1/4 text-black">{project.name}</p>
                 <p className="w-3/4 text-zinc-600 md:whitespace-nowrap">

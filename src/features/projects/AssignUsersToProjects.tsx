@@ -3,12 +3,14 @@ import { Button } from "../../components/Button/Button";
 import { useState } from "react";
 import { useDatabase } from "../../context/DatabaseContext";
 import { Project, User } from "../../types/types";
+import { useMutation, useQueryClient } from "react-query";
 
 type AssignProps = {
   project: Project | undefined;
 };
 
 export const AssignUsersToProjects = ({ project }: AssignProps) => {
+  const queryClient = useQueryClient();
   const { users } = useDatabase();
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [user, setUser] = useState<string | string[]>();
@@ -26,6 +28,12 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
     await axios.post(`${link}/users/assignProject`, options);
     setSubmitted(true);
   };
+
+  const handleMutation = useMutation(handleSubmit, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("projects");
+    },
+  });
 
   return (
     <div className="flex flex-col gap-5 w-2/4 absolute right-5 top-1 border bg-[#fff] shadow rounded">
@@ -45,7 +53,7 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
       </select>
       <Button
         className="flex items-center btn-form text-center mb-3 ml-2 flex-col"
-        onClick={handleSubmit}
+        onClick={() => handleMutation.mutate()}
       >
         Submit
       </Button>

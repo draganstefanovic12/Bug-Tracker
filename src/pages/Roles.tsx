@@ -1,23 +1,10 @@
 import { User } from "../types/types";
-import { useQuery } from "react-query";
-import { Categories } from "../components/Categories/Categories";
 import { AssignRole } from "../features/roles/AssignRole";
-import axios from "../features/axios/interceptors";
-
-const useQueryRoles = () => {
-  return useQuery(["roles"], async () => {
-    const link = "https://drg-bug-tracker.herokuapp.com/users/all";
-    const data = await axios.get(link);
-    return data.data;
-  });
-};
+import { Categories } from "../components/Categories/Categories";
+import { useDatabase } from "../context/DatabaseContext";
 
 export const Roles = () => {
-  const { isLoading, data } = useQueryRoles();
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const { users } = useDatabase();
 
   return (
     <div className="md:flex m-1">
@@ -28,8 +15,8 @@ export const Roles = () => {
           children={["Name", "Email", "Role"]}
           className="gap-40 child:w-20 p-1"
         />
-        {data &&
-          data.map((user: User, i: number) => (
+        {users &&
+          users.map((user: User, i: number) => (
             <div
               key={i}
               className="flex child:w-20 gap-40 child:text-sm bg-[#fff] relative p-1 border-b-2 hover:bg-slate-100"

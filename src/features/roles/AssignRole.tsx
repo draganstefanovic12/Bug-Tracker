@@ -26,7 +26,7 @@ export const AssignRole = () => {
 
   const mutateRoles = useMutation(handleAssign, {
     onSuccess: () => {
-      queryClient.invalidateQueries("roles");
+      queryClient.invalidateQueries("users");
     },
   });
 

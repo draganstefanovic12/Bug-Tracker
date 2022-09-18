@@ -1,13 +1,13 @@
 import { User } from "../../types/types";
 import { Input } from "../Input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type PersonnelProps = {
   assignedUsers: User[] | undefined;
 };
 
 export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
-  const [assigned, setAssigned] = useState<User[] | undefined>(assignedUsers);
+  const [assigned, setAssigned] = useState<User[] | undefined>();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
@@ -22,6 +22,10 @@ export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
     );
     setAssigned(filter);
   };
+
+  useEffect(() => {
+    setAssigned(assignedUsers);
+  }, [assignedUsers]);
 
   return (
     <div className="h-80">
