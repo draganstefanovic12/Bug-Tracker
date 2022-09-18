@@ -1,6 +1,6 @@
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { Notification } from "../../types/types";
-import { ClickAwayListener } from "../../components/ClickAwayListener/ClickAwayListener";
+import ClickAwayListener from "../../components/ClickAwayListener";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import axios from "../axios/interceptors";

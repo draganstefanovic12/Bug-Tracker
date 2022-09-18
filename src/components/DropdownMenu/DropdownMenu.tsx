@@ -1,9 +1,9 @@
-import { Button } from "../Button/Button";
+import Button from "../Button";
 import { useUser } from "../../context/UserContext";
 import { useRef, useState } from "react";
-import { ClickAwayListener } from "../ClickAwayListener/ClickAwayListener";
+import ClickAwayListener from "../ClickAwayListener";
 
-export const DropdownMenu = () => {
+const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { user, dispatch } = useUser();
 
@@ -37,3 +37,5 @@ export const DropdownMenu = () => {
     </div>
   );
 };
+
+export default DropdownMenu;

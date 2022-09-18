@@ -1,12 +1,12 @@
+import Input from "../Input";
 import { User } from "../../types/types";
-import { Input } from "../Input/Input";
 import { useEffect, useState } from "react";
 
 type PersonnelProps = {
   assignedUsers: User[] | undefined;
 };
 
-export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
+const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
   const [assigned, setAssigned] = useState<User[] | undefined>();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,3 +55,5 @@ export const AssignedPersonnel = ({ assignedUsers }: PersonnelProps) => {
     </div>
   );
 };
+
+export default AssignedPersonnel;

@@ -1,8 +1,8 @@
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { Project } from "../../types/types";
 import { useDatabase } from "../../context/DatabaseContext";
 import { ProjectTickets } from "./ProjectTickets";
-import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
+import AssignedPersonnel from "../../components/AssignedPersonnel";
 import { AssignUsersToProjects } from "./AssignUsersToProjects";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../axios/interceptors";

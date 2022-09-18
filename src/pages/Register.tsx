@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button/Button";
+import Button from "../components/Button";
 import { useUser } from "../context/UserContext";
 import { useRegister } from "../hooks/useRegister";
 import { DemoUserSelection } from "../features/user/DemoUserSelection";

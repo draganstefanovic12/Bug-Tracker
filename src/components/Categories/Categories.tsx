@@ -3,7 +3,7 @@ type CategoryProps = {
   className?: string;
 };
 
-export const Categories = ({ children, className }: CategoryProps) => {
+const Categories = ({ children, className }: CategoryProps) => {
   return (
     <div className={`flex text-sm border-b-2 border-black ${className}`}>
       {children.map((string: string, i) => (
@@ -14,3 +14,5 @@ export const Categories = ({ children, className }: CategoryProps) => {
     </div>
   );
 };
+
+export default Categories;

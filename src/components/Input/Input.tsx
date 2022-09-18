@@ -7,7 +7,7 @@ type InputProps = {
   disabled?: boolean;
 };
 
-export const Input = ({
+const Input = ({
   onChange,
   label,
   className,
@@ -28,3 +28,5 @@ export const Input = ({
     </div>
   );
 };
+
+export default Input;

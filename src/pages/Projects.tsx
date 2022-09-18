@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button/Button";
+import Button from "../components/Button";
 import { Project } from "../types/types";
 import { useState } from "react";
 import { useDatabase } from "../context/DatabaseContext";

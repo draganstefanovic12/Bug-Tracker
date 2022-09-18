@@ -1,4 +1,4 @@
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { Ticket } from "../../types/types";
 import axios from "../axios/interceptors";
 

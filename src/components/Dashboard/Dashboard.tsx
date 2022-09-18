@@ -8,7 +8,7 @@ const links = [
   { to: "/roles", img: "before:content-users", name: "Manage Roles" },
 ];
 
-export const Dashboard = () => {
+const Dashboard = () => {
   //State for mobile dashboard animation
   const [display, setDisplay] = useState("");
 
@@ -47,3 +47,5 @@ export const Dashboard = () => {
     </div>
   );
 };
+
+export default Dashboard;

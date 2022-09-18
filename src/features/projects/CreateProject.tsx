@@ -1,5 +1,5 @@
 import close from "../../assets/images/close.svg";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { Project } from "../../types/types";
 import { UserSelect } from "../user/UserSelect";
 import { Field, Form, Formik } from "formik";

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { Input } from "../../components/Input/Input";
+import Input from "../../components/Input";
 import { Ticket } from "../../types/types";
 import { useState } from "react";
-import { Categories } from "../../components/Categories/Categories";
+import Categories from "../../components/Categories";
 
 type TicketsProps = {
   tickets: Ticket[] | undefined;

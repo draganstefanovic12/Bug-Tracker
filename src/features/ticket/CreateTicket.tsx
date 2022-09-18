@@ -1,4 +1,4 @@
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { useUser } from "../../context/UserContext";
 import { UserSelect } from "../user/UserSelect";
 import { useDatabase } from "../../context/DatabaseContext";

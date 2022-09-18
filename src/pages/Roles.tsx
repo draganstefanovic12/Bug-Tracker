@@ -1,6 +1,6 @@
 import { User } from "../types/types";
 import { AssignRole } from "../features/roles/AssignRole";
-import { Categories } from "../components/Categories/Categories";
+import Categories from "../components/Categories";
 import { useDatabase } from "../context/DatabaseContext";
 
 export const Roles = () => {

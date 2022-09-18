@@ -1,10 +1,10 @@
+import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button/Button";
-import { useLogin } from "../hooks/useLogin";
+import { useUser } from "../context/UserContext";
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 import { DemoUserSelection } from "../features/user/DemoUserSelection";
 import { Formik, Form, Field } from "formik";
-import { useUser } from "../context/UserContext";
 
 export const Login = () => {
   const [demoUser, setDemoUser] = useState<boolean>(false);

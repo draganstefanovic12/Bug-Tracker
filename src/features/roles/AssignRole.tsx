@@ -1,5 +1,5 @@
 import { User } from "../../types/types";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { useUser } from "../../context/UserContext";
 import { useState } from "react";
 import { useDatabase } from "../../context/DatabaseContext";

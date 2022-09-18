@@ -7,7 +7,7 @@ type ListenerProps = {
   divRef?: any;
 };
 
-export const ClickAwayListener = ({
+const ClickAwayListener = ({
   children,
   setIsOpen,
   isOpen,
@@ -24,3 +24,5 @@ export const ClickAwayListener = ({
 
   return <>{isOpen && children}</>;
 };
+
+export default ClickAwayListener;

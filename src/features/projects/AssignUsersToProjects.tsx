@@ -1,5 +1,5 @@
 import axios from "../axios/interceptors";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button";
 import { useState } from "react";
 import { useDatabase } from "../../context/DatabaseContext";
 import { Project, User } from "../../types/types";

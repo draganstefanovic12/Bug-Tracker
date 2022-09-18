@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Input } from "../components/Input/Input";
-import { Button } from "../components/Button/Button";
-import { Categories } from "../components/Categories/Categories";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Categories from "../components/Categories";
 import { useDatabase } from "../context/DatabaseContext";
 import { CreateTicket } from "../features/ticket/CreateTicket";
 import { Project, Ticket } from "../types/types";

@@ -1,5 +1,5 @@
-import { Input } from "../../components/Input/Input";
-import { Button } from "../../components/Button/Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { useUser } from "../../context/UserContext";
 import { useState } from "react";
 import { Comment, Ticket } from "../../types/types";

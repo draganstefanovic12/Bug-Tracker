@@ -1,7 +1,7 @@
-import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
+import DropdownMenu from "../DropdownMenu";
 import { Notifications } from "../../features/user/Notifications";
 
-export const Nav = () => {
+const Nav = () => {
   return (
     <nav className="flex justify-between h-9 z-10 bg-[#fff] pr-12 drop-shadow">
       <h1 className="items-center text-transparent md:text-white w-8 md:w-44 after:content-whitebug bg-[#313648] text-[#fff] after:pt-2 pl-1 after:flex flex">
@@ -14,3 +14,5 @@ export const Nav = () => {
     </nav>
   );
 };
+
+export default Nav;
