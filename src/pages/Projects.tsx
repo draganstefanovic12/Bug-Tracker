@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { Project } from "../types/types";
 import { useQuery } from "react-query";
-import { addProject } from "../features/projects/projectSlice";
+import { useDatabase } from "../context/DatabaseContext";
 import { CreateProject } from "../features/projects/CreateProject";
 import { useEffect, useState } from "react";
 import axios from "../features/axios/interceptors";
-import { useDatabase } from "../context/DatabaseContext";
 
+const link = "https://drg-bug-tracker.herokuapp.com";
 const useQueryData = () => {
-  const link = "https://drg-bug-tracker.herokuapp.com";
   return useQuery(["projects"], async () => {
     const data = await axios.get(`${link}/projects/all`);
     return data.data;
@@ -26,7 +25,7 @@ export const Projects = () => {
   };
 
   useEffect(() => {
-    data && dispatch({ type: "ADD_PROJ", payload: data });
+    data && dispatch({ type: "ADD_PROJ", payload: data.projects });
   }, [data, dispatch]);
 
   if (isLoading) {

@@ -1,9 +1,9 @@
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
-import { useAppSelector } from "../../hooks/useRedux";
 import { Comment, Ticket } from "../../types/types";
 import axios from "../axios/interceptors";
+import { useUser } from "../../context/UserContext";
 
 type CommentsProps = {
   ticket: Ticket | undefined;
@@ -11,7 +11,7 @@ type CommentsProps = {
 };
 
 export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
-  const user = useAppSelector((user) => user.user?.username);
+  const user = useUser();
   const [error, setError] = useState("");
   const [value, setValue] = useState<string>("");
 
@@ -32,7 +32,6 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
       return;
     }
     setValue("");
-    setTickets({ ...ticket!, comments: [...ticket!.comments!, comment] });
     const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/projects/comment`, options);
   };

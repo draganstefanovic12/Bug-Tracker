@@ -2,14 +2,12 @@ import { User } from "../../types/types";
 import { Button } from "../../components/Button/Button";
 import { useState } from "react";
 import axios from "../axios/interceptors";
-import { useAppSelector } from "../../hooks/useRedux";
+import { useUser } from "../../context/UserContext";
+import { useDatabase } from "../../context/DatabaseContext";
 
-type AssignRoleProps = {
-  user: User[] | undefined;
-};
-
-export const AssignRole = ({ user }: AssignRoleProps) => {
-  const userRole = useAppSelector((user) => user.user?.role);
+export const AssignRole = () => {
+  const { user } = useUser();
+  const { users } = useDatabase();
   const [role, setRole] = useState<string>("");
   const [assignUser, setAssignUser] = useState<string | string[]>();
 
@@ -40,19 +38,19 @@ export const AssignRole = ({ user }: AssignRoleProps) => {
         className="w-3/6 h-52 border overflow-auto"
         onChange={handleUser}
       >
-        {user?.map((user: User, i) => (
+        {users?.map((user: User, i) => (
           <option key={i} value={user.username}>
             {user.username}
           </option>
         ))}
       </select>
       <select
-        disabled={userRole !== "admin" && true}
+        disabled={user.role !== "admin" && true}
         className="w-3/6 border"
         onChange={handleRole}
       >
         <option className="text-center">
-          {userRole === "admin"
+          {user.role === "admin"
             ? "--SELECT A ROLE--"
             : "Only administrators can change roles."}
         </option>

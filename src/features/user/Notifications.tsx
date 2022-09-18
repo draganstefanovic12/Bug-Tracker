@@ -1,13 +1,13 @@
 import { Button } from "../../components/Button/Button";
 import { Notification } from "../../types/types";
-import { useAppSelector } from "../../hooks/useRedux";
 import { ClickAwayListener } from "../../components/ClickAwayListener/ClickAwayListener";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import axios from "../axios/interceptors";
+import { useUser } from "../../context/UserContext";
 
 export const Notifications = () => {
-  const user = useAppSelector((user) => user.user);
+  const { user } = useUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [notifications, setNotifications] = useState<any>(user?.notifications);
 

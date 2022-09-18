@@ -1,24 +1,17 @@
 import axios from "../axios/interceptors";
 import { Button } from "../../components/Button/Button";
-import { useFetch } from "../../hooks/useFetch";
+import { useState } from "react";
+import { useDatabase } from "../../context/DatabaseContext";
 import { Project, User } from "../../types/types";
-import { useEffect, useState } from "react";
 
 type AssignProps = {
   project: Project | undefined;
 };
 
 export const AssignUsersToProjects = ({ project }: AssignProps) => {
-  const [users, setUsers] = useState<User[]>();
+  const { users } = useDatabase();
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [user, setUser] = useState<string | string[]>();
-
-  const link = "https://drg-bug-tracker.herokuapp.com";
-  const usrs: User[] | undefined = useFetch(`${link}/users/all`);
-
-  useEffect(() => {
-    setUsers(usrs);
-  }, [usrs]);
 
   const handleUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setUser(e.target.value);
@@ -29,6 +22,7 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
       user: user,
       proj: project?.name,
     };
+    const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/users/assignProject`, options);
     setSubmitted(true);
   };

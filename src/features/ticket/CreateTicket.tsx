@@ -1,11 +1,11 @@
 import { Button } from "../../components/Button/Button";
 import { UserSelect } from "../user/UserSelect";
-import { useAppSelector } from "../../hooks/useRedux";
 import { Project, Ticket } from "../../types/types";
 import { Field, Form, Formik } from "formik";
 import { useMutation, useQueryClient } from "react-query";
 import close from "../../assets/images/close.svg";
 import axios from "../axios/interceptors";
+import { useDatabase } from "../../context/DatabaseContext";
 
 type CreateTicketProps = {
   setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,8 +13,7 @@ type CreateTicketProps = {
 
 export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
   const queryClient = useQueryClient();
-  const user = useAppSelector((user) => user.user?.username);
-  const projects = useAppSelector((projects) => projects.projects.projects);
+  const { projects } = useDatabase();
 
   const handleAddTicket = async (ticket: Ticket) => {
     const link = "https://drg-bug-tracker.herokuapp.com";
@@ -49,12 +48,12 @@ export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
           const ticket = {
             ...values,
             status: "Open",
-            developer: user,
-            submitter: user,
+            // developer: user,
+            // submitter: user,
             created: JSON.stringify(new Date()),
             comments: [],
           };
-          createMutation.mutate(ticket);
+          // createMutation.mutate(ticket);
         }}
       >
         {({ isSubmitting }) => (

@@ -1,6 +1,6 @@
 import { Button } from "../../components/Button/Button";
 import { Project } from "../../types/types";
-import { useAppSelector } from "../../hooks/useRedux";
+import { useDatabase } from "../../context/DatabaseContext";
 import { ProjectTickets } from "./ProjectTickets";
 import { AssignedPersonnel } from "../../components/AssignedPersonnel/AssignedPersonnel";
 import { AssignUsersToProjects } from "./AssignUsersToProjects";
@@ -10,16 +10,12 @@ import axios from "../axios/interceptors";
 export const ProjectDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const user = useAppSelector((user) => user.user);
-  const projects = useAppSelector((projects) => projects.projects.projects);
+  const { projects } = useDatabase();
   const project = projects.find(
     (project: Project) => project.name === params.project
   );
 
   const handleDelete = async () => {
-    if (user?.username?.slice(0, 4) === "demo") {
-      return;
-    }
     const options = { _id: project?._id };
     const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/projects/remove`, options);
@@ -50,14 +46,12 @@ export const ProjectDetails = () => {
         <AssignedPersonnel assignedUsers={project?.assigned} />
         <ProjectTickets tickets={project?.tickets} />
       </div>
-      {user?.role === "admin" && (
-        <Button
-          className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
-          onClick={handleDelete}
-        >
-          Delete
-        </Button>
-      )}
+      <Button
+        className="btn-form bg-red-600 hover:bg-red-700 shadow-lg absolute bottom-4 right-5"
+        onClick={handleDelete}
+      >
+        Delete
+      </Button>
     </section>
   );
 };

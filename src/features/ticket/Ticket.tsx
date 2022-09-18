@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { TicketInfo } from "./TicketInfo";
+import { useDatabase } from "../../context/DatabaseContext";
 import { TicketComments } from "./TicketComments";
-import { useAppSelector } from "../../hooks/useRedux";
 import { useEffect, useState } from "react";
 import { Project, Ticket as Tickets } from "../../types/types";
 
 export const Ticket = () => {
   const [ticket, setTicket] = useState<Tickets | undefined>();
   const params = useParams();
-  const projects = useAppSelector((projects) => projects.projects.projects);
+  const { projects } = useDatabase();
 
   useEffect(() => {
     const project = projects.find(

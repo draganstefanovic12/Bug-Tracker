@@ -2,21 +2,24 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { store } from "./features/store/store";
-import { Provider } from "react-redux";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { UserContextProvider } from "./context/UserContext";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import { store } from "./features/store/store";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <UserContextProvider>
         <DatabaseContextProvider>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </DatabaseContextProvider>
-      </QueryClientProvider>
-    </Provider>
+      </UserContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

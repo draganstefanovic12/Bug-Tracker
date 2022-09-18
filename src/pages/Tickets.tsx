@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
 import { Categories } from "../components/Categories/Categories";
+import { useDatabase } from "../context/DatabaseContext";
 import { CreateTicket } from "../features/ticket/CreateTicket";
-import { useAppSelector } from "../hooks/useRedux";
 import { Project, Ticket } from "../types/types";
 import { useEffect, useState } from "react";
 
 const categories = ["Subject", "Submitter", "Priority", "Type", "Created"];
 
 export const Tickets = () => {
-  const projects = useAppSelector((projects) => projects.projects.projects);
+  const { projects } = useDatabase();
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [proj, setProj] = useState(projects);
 

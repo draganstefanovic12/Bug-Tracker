@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { logout } from "../../features/user/userSlice";
 import { useRef, useState } from "react";
 import { ClickAwayListener } from "../ClickAwayListener/ClickAwayListener";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useAppDispatch } from "../../hooks/useRedux";
+import { useUser } from "../../context/UserContext";
 
 export const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const user = useAppSelector((user) => user.user)!;
+  const { user } = useUser();
   const dispatch = useAppDispatch();
 
   const handleToggle = () => {
