@@ -29,14 +29,19 @@ export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
     <div className="items-center flex border shadow p-5 flex-col">
       <h1 className="mb-5">Select a role you would like to preview: </h1>
       <div className="flex gap-10">
-        {roles.map((role) => (
-          <p
-            onClick={() => setRole(role.name.toLowerCase())}
-            className={`${role.content} hover:cursor-pointer hover:bg-slate-100 w-32 flex flex-col text-center`}
-          >
-            {role.name}
-          </p>
-        ))}
+        {roles.map((selected, i) => {
+          const styles =
+            role === selected.name.toLocaleLowerCase() ? "bg-slate-100" : "";
+          return (
+            <p
+              key={i}
+              onClick={() => setRole(selected.name.toLowerCase())}
+              className={`${selected.content} ${styles} hover:cursor-pointer mb-5 hover:bg-slate-100 w-32 flex flex-col text-center`}
+            >
+              {selected.name}
+            </p>
+          );
+        })}
       </div>
       <Button className="btn-form" onClick={handleRegisterDemoUser}>
         Submit
