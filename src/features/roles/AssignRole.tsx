@@ -1,11 +1,13 @@
 import { User } from "../../types/types";
 import { Button } from "../../components/Button/Button";
-import { useState } from "react";
-import axios from "../axios/interceptors";
 import { useUser } from "../../context/UserContext";
+import { useState } from "react";
 import { useDatabase } from "../../context/DatabaseContext";
+import { useQueryClient, useMutation } from "react-query";
+import axios from "../axios/interceptors";
 
 export const AssignRole = () => {
+  const queryClient = useQueryClient();
   const { user } = useUser();
   const { users } = useDatabase();
   const [role, setRole] = useState<string>("");
@@ -21,6 +23,12 @@ export const AssignRole = () => {
     const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/users/role`, options);
   };
+
+  const mutateRoles = useMutation(handleAssign, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("roles");
+    },
+  });
 
   const handleUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAssignUser(e.target.value);
@@ -60,7 +68,7 @@ export const AssignRole = () => {
       </select>
       <Button
         className="flex items-center btn-form text-center flex-col"
-        onClick={handleAssign}
+        onClick={() => mutateRoles.mutate()}
       >
         Submit
       </Button>

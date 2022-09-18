@@ -1,20 +1,26 @@
 import axios from "axios";
+import { useUser } from "../context/UserContext";
 
 type RegisterProps = {
-  userData: {
-    username: string;
-    email: string;
-    password: string;
-  };
+  username: string;
+  password: string;
+  email: string;
+  role?: string;
 };
 
 export const useRegister = () => {
-  const handleRegister = async (userData: RegisterProps) => {
-    const link = "https://drg-bug-tracker.herokuapp.com/users/all";
+  const { dispatch } = useUser();
+  const handleRegister = async (values: RegisterProps) => {
+    const link = "https://drg-bug-tracker.herokuapp.com";
     const data = await axios.post(`${link}/users/register`, {
-      data: userData,
+      username: values.username,
+      password: values.password,
+      email: values.email,
+      role: values.role,
     });
-    return data.data;
+    if (data.status === 200) {
+      dispatch({ type: "LOGIN", payload: data.data });
+    }
   };
 
   return { handleRegister };

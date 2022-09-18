@@ -1,21 +1,18 @@
 import { Button } from "../Button/Button";
-import { logout } from "../../features/user/userSlice";
+import { useUser } from "../../context/UserContext";
 import { useRef, useState } from "react";
 import { ClickAwayListener } from "../ClickAwayListener/ClickAwayListener";
-import { useAppDispatch } from "../../hooks/useRedux";
-import { useUser } from "../../context/UserContext";
 
 export const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { user } = useUser();
-  const dispatch = useAppDispatch();
+  const { user, dispatch } = useUser();
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch({ type: "LOGOUT" });
   };
 
   const divRef = useRef<HTMLDivElement>(null);

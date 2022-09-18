@@ -5,8 +5,6 @@ import "./index.css";
 import { UserContextProvider } from "./context/UserContext";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Provider } from "react-redux";
-import { store } from "./features/store/store";
 
 const queryClient = new QueryClient();
 
@@ -15,9 +13,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
       <UserContextProvider>
         <DatabaseContextProvider>
-          <Provider store={store}>
-            <App />
-          </Provider>
+          <App />
         </DatabaseContextProvider>
       </UserContextProvider>
     </QueryClientProvider>

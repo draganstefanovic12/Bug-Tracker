@@ -21,7 +21,7 @@ export const Roles = () => {
 
   return (
     <div className="md:flex m-1">
-      <AssignRole user={data} />
+      <AssignRole />
       <div className="bg-[#fff] border m-2 shadow p-2 rounded">
         <h1 className="font-bold pl-1">All users</h1>
         <Categories

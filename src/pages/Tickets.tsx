@@ -64,8 +64,8 @@ export const Tickets = () => {
           onChange={handleSearch}
         />
         <Categories children={categories} className="gap-28" />
-        {proj?.map((project: Project, i) =>
-          project.tickets!.map((ticket: Ticket) => (
+        {proj?.map((project: Project) =>
+          project.tickets!.map((ticket: Ticket, i) => (
             <div
               key={i}
               className="child:w-32 text-sm items-center flex border-b-2 gap-28 hover:bg-slate-50"

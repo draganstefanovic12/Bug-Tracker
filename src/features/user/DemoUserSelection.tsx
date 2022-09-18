@@ -1,7 +1,6 @@
 import { Button } from "../../components/Button/Button";
-import { actionAsync } from "./userSlice";
-import { useAppDispatch } from "../../hooks/useRedux";
 import { useState } from "react";
+import { useRegister } from "../../hooks/useRegister";
 
 type DemoProps = {
   handleDemoUser: () => void;
@@ -9,18 +8,15 @@ type DemoProps = {
 
 export const DemoUserSelection = ({ handleDemoUser }: DemoProps) => {
   const [role, setRole] = useState<string>("");
-  const dispatch = useAppDispatch();
+  const { handleRegister } = useRegister();
 
   const handleRegisterDemoUser = () => {
-    dispatch(
-      actionAsync({
-        username: `demo_user${Math.floor(Math.random() * 10000)}`,
-        password: Math.floor(Math.random() * 10000).toString(),
-        email: `${Math.floor(Math.random() * 10000).toString()}@demouser.com`,
-        role: role,
-        api: "register",
-      })
-    );
+    handleRegister({
+      username: `demo_user${Math.floor(Math.random() * 10000)}`,
+      password: Math.floor(Math.random() * 10000).toString(),
+      email: "demo@demouser.com",
+      role: role,
+    });
   };
 
   return (

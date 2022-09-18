@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
+import { useLogin } from "../hooks/useLogin";
 import { useState } from "react";
-import { actionAsync } from "../features/user/userSlice";
 import { DemoUserSelection } from "../features/user/DemoUserSelection";
 import { Formik, Form, Field } from "formik";
-import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { useUser } from "../context/UserContext";
 
 export const Login = () => {
-  const dispatch = useAppDispatch();
   const [demoUser, setDemoUser] = useState<boolean>(false);
-  const user = useAppSelector((user) => user.user);
+  const { user } = useUser();
+  const { handleLogin } = useLogin();
 
   const handleDemoUser = () => {
     setDemoUser(!demoUser);
@@ -22,16 +22,11 @@ export const Login = () => {
       </h1>
       <Formik
         initialValues={{ username: "", password: "" }}
-        onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(true);
-          dispatch(
-            actionAsync({
-              username: values.username,
-              password: values.password,
-              api: "login",
-            })
-          );
-          user?.state !== "pending" && setSubmitting(false);
+        onSubmit={(values) => {
+          handleLogin({
+            username: values.username,
+            password: values.password,
+          });
         }}
       >
         {({ isSubmitting }) =>

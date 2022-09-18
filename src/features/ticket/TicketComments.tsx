@@ -1,22 +1,23 @@
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
+import { useUser } from "../../context/UserContext";
 import { useState } from "react";
 import { Comment, Ticket } from "../../types/types";
+import { useMutation, useQueryClient } from "react-query";
 import axios from "../axios/interceptors";
-import { useUser } from "../../context/UserContext";
 
 type CommentsProps = {
   ticket: Ticket | undefined;
-  setTickets: React.Dispatch<React.SetStateAction<Ticket | undefined>>;
 };
 
-export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
+export const TicketComments = ({ ticket }: CommentsProps) => {
+  const queryClient = useQueryClient();
   const user = useUser();
   const [error, setError] = useState("");
   const [value, setValue] = useState<string>("");
 
   const comment = {
-    commenter: user,
+    commenter: user.user.username,
     message: value,
     created: new Date().toString(),
   };
@@ -27,7 +28,7 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
   };
 
   const handleComment = async () => {
-    if (value.length < 5) {
+    if (value.length < 3) {
       setError("Please type a message.");
       return;
     }
@@ -35,6 +36,12 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
     const link = "https://drg-bug-tracker.herokuapp.com";
     await axios.post(`${link}/projects/comment`, options);
   };
+
+  const createMutation = useMutation(handleComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("projects");
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError("");
@@ -70,7 +77,7 @@ export const TicketComments = ({ ticket, setTickets }: CommentsProps) => {
             className="shadow-inner w-full rounded bg-[#ededed] p-2"
           />
           <Button
-            onClick={handleComment}
+            onClick={() => createMutation.mutate()}
             className="absolute h-9 right-3 btn-form w-24 bottom-4"
           >
             Comment

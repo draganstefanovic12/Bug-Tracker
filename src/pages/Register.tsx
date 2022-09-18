@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
-import { actionAsync } from "../features/user/userSlice";
+import { useUser } from "../context/UserContext";
+import { useRegister } from "../hooks/useRegister";
 import { DemoUserSelection } from "../features/user/DemoUserSelection";
 import { Fragment, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -31,9 +31,9 @@ const registerFields = [
 ];
 
 export const Register = () => {
-  const user = useAppSelector((user) => user.user);
   const [demoUser, setDemoUser] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const { user } = useUser();
+  const { handleRegister } = useRegister();
 
   const handleDemoUser = () => {
     setDemoUser(!demoUser);
@@ -49,15 +49,8 @@ export const Register = () => {
         validationSchema={signUpSchema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
-          dispatch(
-            actionAsync({
-              username: values.username,
-              password: values.password,
-              email: values.email,
-              api: "register",
-            })
-          );
-          user?.state !== "pending" && setSubmitting(false);
+          handleRegister(values);
+          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) =>

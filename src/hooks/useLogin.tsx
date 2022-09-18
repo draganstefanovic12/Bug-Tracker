@@ -1,17 +1,22 @@
 import axios from "axios";
+import { useUser } from "../context/UserContext";
 
-type UserData = {
+type Values = {
   username: string;
   password: string;
 };
 
 export const useLogin = () => {
-  const handleLogin = async (userData: UserData) => {
-    const link = "https://drg-bug-tracker.herokuapp.com/users/all";
+  const { dispatch } = useUser();
+  const handleLogin = async (values: Values) => {
+    const link = "http://localhost:5000";
     const data = await axios.post(`${link}/users/login`, {
-      data: userData,
+      username: values.username,
+      password: values.password,
     });
-    return data.data;
+    if (data.status === 200) {
+      dispatch({ type: "LOGIN", payload: data.data });
+    }
   };
 
   return { handleLogin };
