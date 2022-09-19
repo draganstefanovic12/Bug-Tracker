@@ -23,11 +23,6 @@ Some features on the website:
 - Comments/Notification system that lets everyone know if a change happens on the project they're assigned to.
 - Demo users (You can view the app as a user/dev/admin and see the differences)
 
-Things I still plan on implementing:
-- Improving general look of the app
-- Mobile optimization
-- Some small bug fixes.
-
 <a href="https://draganstefanovic12.github.io/Bug-Tracker/#/login">Live Project</a>
 
 ![alt text](https://i.imgur.com/nEiqGLM.png)
