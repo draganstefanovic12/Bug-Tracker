@@ -11,8 +11,7 @@ type RegisterProps = {
 export const useRegister = () => {
   const { dispatch } = useUser();
   const handleRegister = async (values: RegisterProps) => {
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    const data = await axios.post(`${link}/users/register`, {
+    const data = await axios.post(`/users/register`, {
       username: values.username,
       password: values.password,
       email: values.email,

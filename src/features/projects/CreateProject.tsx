@@ -14,8 +14,7 @@ export const CreateProject = ({ setIsCreating }: CreateProps) => {
   const queryClient = useQueryClient();
 
   const handleAddProject = async (project: Project) => {
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios(`${link}/projects/new`, {
+    await axios(`/projects/new`, {
       method: "POST",
       data: project,
     });

@@ -18,8 +18,7 @@ export const CreateTicket = ({ setIsCreating }: CreateTicketProps) => {
   const { user } = useUser();
 
   const handleAddTicket = async (ticket: Ticket) => {
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios(`${link}/projects/ticket`, {
+    await axios(`/projects/ticket`, {
       method: "POST",
       data: {
         ticket: ticket,

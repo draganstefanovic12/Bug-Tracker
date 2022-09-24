@@ -20,8 +20,7 @@ export const AssignRole = () => {
       name: assignUser,
       role: role,
     };
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios.post(`${link}/users/role`, options);
+    await axios.post(`/users/role`, options);
   };
 
   const mutateRoles = useMutation(handleAssign, {

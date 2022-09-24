@@ -24,8 +24,7 @@ export const AssignUsersToProjects = ({ project }: AssignProps) => {
       user: user,
       proj: project?.name,
     };
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios.post(`${link}/users/assignProject`, options);
+    await axios.post(`/users/assignProject`, options);
     setSubmitted(true);
   };
 

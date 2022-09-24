@@ -33,8 +33,7 @@ export const TicketComments = ({ ticket }: CommentsProps) => {
       return;
     }
     setValue("");
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios.post(`${link}/projects/comment`, options);
+    await axios.post(`/projects/comment`, options);
   };
 
   const createMutation = useMutation(handleComment, {

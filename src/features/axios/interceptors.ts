@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create();
+const axiosInstance = axios.create({ baseURL: "https://dragpersonalproj.xyz" });
 
 //intercepts all axios requests and hands in authorization so i don't have to do it all the time
 axiosInstance.interceptors.request.use((config) => {

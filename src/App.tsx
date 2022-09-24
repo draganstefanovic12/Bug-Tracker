@@ -6,17 +6,15 @@ import axios from "axios";
 import BrowserRoutes from "./routes";
 
 const useUserData = () => {
-  const link = "https://drg-bug-tracker.herokuapp.com";
   return useQuery(["users"], async () => {
-    const data = await axios.get(`${link}/users/all`);
+    const data = await axios.get(`/users/all`);
     return data.data;
   });
 };
-const link = "https://drg-bug-tracker.herokuapp.com";
 
 const useQueryData = () => {
   return useQuery(["projects"], async () => {
-    const data = await axios.get(`${link}/projects/all`);
+    const data = await axios.get(`$/projects/all`);
     return data.data;
   });
 };

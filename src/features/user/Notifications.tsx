@@ -31,8 +31,7 @@ export const Notifications = () => {
         return { ...notif, read: true };
       })
     );
-    const link = "https://drg-bug-tracker.herokuapp.com";
-    await axios.post(`${link}/users/read`, options);
+    await axios.post(`/users/read`, options);
   };
 
   //Using the length of unread notifications to show notification numbers
